@@ -1,58 +1,58 @@
 import streamlit as st
-from pydataxm.pydataxm import ReadDB
 from streamlit_option_menu import option_menu
 
-from controller.MercadoController import MercadoController
-from model.Consulta import Consulta
-from model.Metrica import Metrica
-from view.AboutPartial import *
+from controller.EvalController import EvaluadorController
+from view.AboutPartial import consultar_instrucciones
+from view.EvalPartial import listar_evaluacion, agregar_evaluacion
+from view.PruebaPartial import probar_streamlit
 
 
 class MainView:
-
     def __init__(self) -> None:
         super().__init__()
 
+        # Estretagia para manejar el "estado" del controllador y del modelo entre cada cambio de ventana
         if 'main_view' not in st.session_state:
             self.menu_actual = "About"
-            # Inicialización de las variables necesarias
+
+            # Conexión con el controlador
+            self.controller = EvaluadorController()
 
             st.session_state['main_view'] = self
         else:
-            self.menu_actual = st.session_state.main_view.menu_actual
-             # Carga de las variables necesarias
-        self._inicialializar_layout()
 
-    def _inicialializar_layout(self):
+            # Al exisir en la sesión entonces se actualizan los valores
+            self.menu_actual = st.session_state.main_view.menu_actual
+            self.controller = st.session_state.main_view.controller
+
+        self._dibujar_layout()
+
+    def _dibujar_layout(self):
         # Set page title, icon, layout wide (more used space in central area) and sidebar initial state
-        st.set_page_config(page_title="Análisis mercado energía", page_icon='', layout="wide",
+        st.set_page_config(page_title="Sistema de gestion de notas", page_icon='', layout="wide",
                            initial_sidebar_state="expanded")
         # Defines the number of available columns del area principal
         self.col1, self.col2, self.col3 = st.columns([1, 1, 1])
 
         # Define lo que abrá en la barra de menu
         with st.sidebar:
-            self.menu_actual = option_menu("Menu", ["About", '[OtroMenu]Mi Menu'],
+            self.menu_actual = option_menu("Menu", ["Inicio", 'PruebaStreamlit', 'EvaluarAvances', 'ListarEvaluaciones'],
                                            icons=['house', 'gear'], menu_icon="cast", default_index=1)
 
-    def ver_ejemplo(self):
-        pass
-
     def controlar_menu(self):
-        # Filtro opciones de menu
-        if self.menu_actual == "About":
-            # Welcome message
-            welcome = st.expander(label="Instrucciones", expanded=True)
-
-            # Cuando este disponible en pantalla la instruccion de welcome
-            with welcome:
-                st.markdown(mostrar())
-                st.write("")
-        elif self.menu_actual == "[OtroMenu]Mi Menu":
-            self.ver_ejemplo()
+        """TODO poner aqui su codigo de interaccion"""
+        if self.menu_actual == "Inicio":
+            texto = consultar_instrucciones()
+            st.write(texto)
+        elif self.menu_actual == "PruebaStreamlit":
+            probar_streamlit(st)
+        elif self.menu_actual == "EvaluarAvances":
+            agregar_evaluacion(st, self.controller)
+        elif self.menu_actual == "ListarEvaluaciones":
+            listar_evaluacion(st, self.controller)
 
 
 # Main call
 if __name__ == "__main__":
-    gui = MainView()
-    gui.controlar_menu()
+    main = MainView()
+    main.controlar_menu()
