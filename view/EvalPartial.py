@@ -9,6 +9,7 @@ def agregar_evaluacion(st, controller):
     evaluacion_obj.nombre = st.text_input("Nombre estudiante")
     evaluacion_obj.id_estudiante = st.text_input("Id estudiante")
     evaluacion_obj.tema_proyecto = st.text_input("Tema proyecto")
+
     option = st.selectbox(
         'como te podemos contactar?',
         ('Email', 'telefono fijo', 'telefono celular'))

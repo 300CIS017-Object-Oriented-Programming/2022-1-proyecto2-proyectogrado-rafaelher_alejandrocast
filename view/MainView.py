@@ -1,15 +1,10 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 
-import controller
 from controller.EvalController import EvaluadorController
+from view.AboutPartial import consultar_instrucciones
 from view.EvalPartial import listar_evaluacion, agregar_evaluacion
-from view.CrearActa import consultar_instrucciones2
-
-
-
-def listar_evaluacion2(st, controller):
-    pass
+from view.PruebaPartial import probar_streamlit
 
 
 class MainView:
@@ -23,7 +18,7 @@ class MainView:
             # Conexión con el controlador
             self.controller = EvaluadorController()
 
-            st.session_state['CrearActa'] = self
+            st.session_state['main_view'] = self
         else:
 
             # Al exisir en la sesión entonces se actualizan los valores
@@ -41,22 +36,20 @@ class MainView:
 
         # Define lo que abrá en la barra de menu
         with st.sidebar:
-            self.menu_actual = option_menu("Menu", ["Inicio", 'Crear Acta', 'Evaluar Avances', 'Listar Actas', 'Listar Actas 2'],
+            self.menu_actual = option_menu("Menu", ["Inicio", 'PruebaStreamlit', 'EvaluarAvances', 'ListarEvaluaciones'],
                                            icons=['house', 'gear'], menu_icon="cast", default_index=1)
 
     def controlar_menu(self):
         """TODO poner aqui su codigo de interaccion"""
-        if self.menu_actual == "Crear Acta":
-            agregar_evaluacion(st, self.controller)
-        elif self.menu_actual == "Inicio":
-            texto = consultar_instrucciones2()
+        if self.menu_actual == "Inicio":
+            texto = consultar_instrucciones()
             st.write(texto)
-        elif self.menu_actual == "Evaluar Avances":
+        elif self.menu_actual == "PruebaStreamlit":
+            probar_streamlit(st)
+        elif self.menu_actual == "EvaluarAvances":
             agregar_evaluacion(st, self.controller)
-        elif self.menu_actual == "Listar Actas":
+        elif self.menu_actual == "ListarEvaluaciones":
             listar_evaluacion(st, self.controller)
-        elif self.menu_actual == "Listar Actas 2":
-            listar_evaluacion2(st, self.controller)
 
 
 # Main call
