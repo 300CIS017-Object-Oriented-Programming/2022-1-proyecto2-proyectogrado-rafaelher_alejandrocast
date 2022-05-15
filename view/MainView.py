@@ -3,8 +3,6 @@ from streamlit_option_menu import option_menu
 
 import controller
 from controller.EvalController import EvaluadorController
-from view.AboutPartial import agregar_evaluacion
-from view.AboutPartial import listar_evaluacion2
 from view.EvalPartial import listar_evaluacion, agregar_evaluacion
 from view.CrearActa import consultar_instrucciones2
 
