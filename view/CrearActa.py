@@ -53,35 +53,25 @@ def agregar_acta(st, controller):
     # entonces de esta manera se actualiza el controlador en la vista principal
     return controller
 
-
-
 def listar_actas(st, controller):
     """Itera los elementos de evaluacion agregados y los muestra"""
     st.title("Datos guardados")
-    for evaluacion2 in controller.evaluaciones2:
+    for evaluaciones2 in controller.evaluaciones2:
 
         col1, col2, col3, col4 = st.columns(4)
 
         with col1:
             st.header("Nombre")
-            st.write(evaluacion2.id_estudiante)
+            st.write(evaluaciones2.id_estudiante2)
 
         with col2:
             st.header("id estudiante")
-            st.write(evaluacion2.nombre)
+            st.write(evaluaciones2.nombre2)
 
         with col3:
             st.header("Tema proyecto")
-            st.write(evaluacion2.tema_proyecto)
+            st.write(evaluaciones2.tema_proyecto2)
 
         with col4:
             st.header("Contacto")
-            st.write(evaluacion2.id_metodocontacto)
-
-
-
-
-
-
-
-
+            st.write(evaluaciones2.id_metodocontacto2)
