@@ -75,3 +75,4 @@ def listar_actas(st, controller):
         with col4:
             st.header("Contacto")
             st.write(evaluaciones2.id_metodocontacto2)
+##
