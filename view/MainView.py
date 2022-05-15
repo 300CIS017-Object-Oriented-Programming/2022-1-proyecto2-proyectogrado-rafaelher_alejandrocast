@@ -3,10 +3,11 @@ from streamlit_option_menu import option_menu
 
 import controller
 from controller.EvalController import EvaluadorController
-from view.AboutPartial import consultar_instrucciones
+from view.AboutPartial import agregar_evaluacion
+from view.AboutPartial import listar_evaluacion2
 from view.EvalPartial import listar_evaluacion, agregar_evaluacion
-from view.CrearActa import agregar_acta
-from view.CrearActa import listar_actas
+from view.CrearActa import consultar_instrucciones2
+
 
 
 def listar_evaluacion2(st, controller):
@@ -24,7 +25,7 @@ class MainView:
             # Conexión con el controlador
             self.controller = EvaluadorController()
 
-            st.session_state['main_view'] = self
+            st.session_state['CrearActa'] = self
         else:
 
             # Al exisir en la sesión entonces se actualizan los valores
@@ -47,12 +48,11 @@ class MainView:
 
     def controlar_menu(self):
         """TODO poner aqui su codigo de interaccion"""
-        if self.menu_actual == "Inicio":
-            texto = consultar_instrucciones()
+        if self.menu_actual == "Crear Acta":
+            agregar_evaluacion(st, self.controller)
+        elif self.menu_actual == "Inicio":
+            texto = consultar_instrucciones2()
             st.write(texto)
-        elif self.menu_actual == "Crear Acta":
-            agregar_acta(st, controller)
-            listar_actas(st, controller)
         elif self.menu_actual == "Evaluar Avances":
             agregar_evaluacion(st, self.controller)
         elif self.menu_actual == "Listar Actas":

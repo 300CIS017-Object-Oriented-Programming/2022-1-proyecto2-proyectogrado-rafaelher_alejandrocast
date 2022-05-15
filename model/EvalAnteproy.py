@@ -14,6 +14,10 @@ class EvaluacionAnteproyecto:
         self.nombre_estudiante = ""
         self.id_estudiante = ""
         self.tema_proyecto = ""
+        self.fecha_evaluacion2 = ""
+        self.nombre_estudiante2 = ""
+        self.id_estudiante2 = ""
+        self.tema_proyecto2 = ""
 
         self.version_doc = " "  # Identifica la version en la que va la evaluación
 
