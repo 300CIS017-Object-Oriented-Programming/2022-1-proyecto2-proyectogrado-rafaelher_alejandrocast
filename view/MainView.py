@@ -8,6 +8,11 @@ from view.EvalPartial import listar_evaluacion, agregar_evaluacion
 from view.CrearActa import agregar_acta
 from view.CrearActa import listar_actas
 
+
+def listar_evaluacion2(st, controller):
+    pass
+
+
 class MainView:
     def __init__(self) -> None:
         super().__init__()
@@ -53,7 +58,7 @@ class MainView:
         elif self.menu_actual == "Listar Actas":
             listar_evaluacion(st, self.controller)
         elif self.menu_actual == "Listar Actas 2":
-            listar_evaluacion(st, self.controller)
+            listar_evaluacion2(st, self.controller)
 
 
 # Main call
