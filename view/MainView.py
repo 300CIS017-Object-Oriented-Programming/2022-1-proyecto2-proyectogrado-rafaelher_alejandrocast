@@ -1,11 +1,12 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 
+import controller
 from controller.EvalController import EvaluadorController
 from view.AboutPartial import consultar_instrucciones
 from view.EvalPartial import listar_evaluacion, agregar_evaluacion
-from view.PruebaPartial import probar_streamlit
-
+from view.CrearActa import agregar_acta
+from view.CrearActa import listar_actas
 
 class MainView:
     def __init__(self) -> None:
@@ -36,7 +37,7 @@ class MainView:
 
         # Define lo que abrá en la barra de menu
         with st.sidebar:
-            self.menu_actual = option_menu("Menu", ["Inicio", 'Crear Acta', 'Evaluar Avances', 'Listar Actas'],
+            self.menu_actual = option_menu("Menu", ["Inicio", 'Crear Acta', 'Evaluar Avances', 'Listar Actas', 'Listar Actas 2'],
                                            icons=['house', 'gear'], menu_icon="cast", default_index=1)
 
     def controlar_menu(self):
@@ -45,10 +46,13 @@ class MainView:
             texto = consultar_instrucciones()
             st.write(texto)
         elif self.menu_actual == "Crear Acta":
-            probar_streamlit(st)
+            agregar_acta(st, controller)
+            listar_actas(st, controller)
         elif self.menu_actual == "Evaluar Avances":
             agregar_evaluacion(st, self.controller)
         elif self.menu_actual == "Listar Actas":
+            listar_evaluacion(st, self.controller)
+        elif self.menu_actual == "Listar Actas 2":
             listar_evaluacion(st, self.controller)
 
 

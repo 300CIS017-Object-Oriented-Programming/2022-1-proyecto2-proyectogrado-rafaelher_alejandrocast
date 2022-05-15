@@ -6,3 +6,8 @@ class EvaluadorController:
 
     def agregar_evaluacion(self, evaluacion_obj):
         self.evaluaciones.append(evaluacion_obj)
+
+    def agregar_evaluacion2(self, evaluacion2_obj):
+        self.evaluaciones2.append(evaluacion2_obj)
+
+

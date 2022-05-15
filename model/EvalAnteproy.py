@@ -16,6 +16,7 @@ class EvaluacionAnteproyecto:
         self.tema_proyecto = ""
         self.version_doc = " "  # Identifica la version en la que va la evaluación
 
+
         # Llamado al método que inicializa la información precargada
         self._inicializar_criterios()
 
