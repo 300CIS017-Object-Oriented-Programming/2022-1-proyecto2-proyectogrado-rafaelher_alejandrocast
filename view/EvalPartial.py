@@ -21,13 +21,13 @@ def agregar_evaluacion(st, controller):
     evaluacion_obj.co_director = st.text_input("Co-Director")
     evaluacion_obj.enfasis = st.text_input("Enfasis")
     evaluacion_obj.modalidad = st.text_input("Modalidad")
-    evaluacion_obj.Jurado1 = st.text_input("Jurado 1")
-    evaluacion_obj.Jurado2 = st.text_input("Jurado 2")
+    evaluacion_obj.jurado1 = st.text_input("Jurado 1")
+    evaluacion_obj.jurado2 = st.text_input("Jurado 2")
 
 
     # TODO
     # Agregar campo para leer el tema y la versión de la evaluación del proyecto
-    enviado_btn = st.button("Submit")
+    enviado_btn = st.button("Guardar")
 
     # Cuando se oprime el boton se agrega a la lista
     if enviado_btn:
@@ -43,21 +43,34 @@ def listar_evaluacion(st, controller):
     st.title("Datos guardados")
     for evaluacion in controller.evaluaciones:
 
-        col1, col2, col3, col4 = st.columns(4)
 
-        with col1:
             st.header("Nombre")
             st.write(evaluacion.id_estudiante)
-
-        with col2:
+       # with col1:
             st.header("id estudiante")
             st.write(evaluacion.nombre)
-
-        with col3:
+        #with col1:
             st.header("Tema proyecto")
             st.write(evaluacion.tema_proyecto)
-
-        with col4:
-            st.header("Contacto")
-            st.write(evaluacion.id_metodocontacto)
+        #with col1:
+            st.header("Periodo")
+            st.write(evaluacion.periodo)
+        #with col1:
+            st.header("Director")
+            st.write(evaluacion.director)
+        #with col1:
+            st.header("Co-director")
+            st.write(evaluacion.co_director)
+        #with col1:
+            st.header("Enfasis")
+            st.write(evaluacion.enfasis)
+        #with col1:
+            st.header("Modalidad")
+            st.write(evaluacion.modalidad)
+        #with col1:
+            st.header("Jurado 1")
+            st.write(evaluacion.jurado1)
+        #with col1:
+            st.header("Jurado 2")
+            st.write(evaluacion.jurado2)
 

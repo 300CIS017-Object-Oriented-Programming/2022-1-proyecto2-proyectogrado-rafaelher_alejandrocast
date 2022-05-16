@@ -40,7 +40,7 @@ class MainView:
         # Define lo que abrá en la barra de menu
         with st.sidebar:
             self.menu_actual = option_menu("Menu", ["Inicio", 'Imprimir Acta', 'Crear Acta', 'Listar Actas'],
-                                        icons=['house', 'gear'], menu_icon="cast", default_index=0, orientation="horizontal")
+                                        icons=['house', 'bi bi-printer', 'bi bi-file-earmark-plus-fill','archive'], menu_icon="cast", default_index=0, orientation="horizontal")
 
     def controlar_menu(self):
         """TODO poner aqui su codigo de interaccion"""
