@@ -73,3 +73,21 @@ def listar_evaluacion(st, controller):
             st.subheader("Jurado 2")
             st.write(evaluacion.jurado2)
             i += 1
+
+
+def exp_acta(st, controller):
+    st.title('Generar PDF')
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font('Arial', size=13)
+    pdf.imager('https://www.google.com.co/search?q=javeriana%20cali%20logo&tbm=isch&hl=es&tbs=ic:trans&sa=X&ved=0CAMQpwVqFwoTCJj4z5ya5fcCFQAAAAAdAAAAABAC&biw=1686&bih=833#imgrc=DPXwGd5OaNlLeM')
+    pdf.cell(200,10, txt='ACTA DE EVALUACION DE GRADO', ln=1, align='C')
+    pdf.cell(200, 10, txt='ACTA DE EVALUACION DE GRADO22', ln=1, align='C')
+
+    enviar_calificacion = st.button('Generar PDF')
+    if enviar_calificacion:
+        pdf.ouput('nombre de acta-.pdf')
+        st.write('ACTA GENERADA')
+
+
+# Main call
