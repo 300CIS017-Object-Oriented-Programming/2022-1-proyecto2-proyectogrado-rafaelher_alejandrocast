@@ -5,7 +5,6 @@ from model.EvalAnteproy import EvaluacionAnteproyecto
 
 def instrucciones():
     return """
-           #### ¡bienvenido!
            Por favor rellenar todos los espacios en este apartado para poder crear el acta. \n\n\n\n\n
 
            """

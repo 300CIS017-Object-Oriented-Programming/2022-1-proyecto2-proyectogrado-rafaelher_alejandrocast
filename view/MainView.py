@@ -1,3 +1,5 @@
+
+
 import streamlit as st
 
 
@@ -8,6 +10,7 @@ from view.AboutPartial import consultar_instrucciones
 from view.EvalPartial import listar_evaluacion, agregar_evaluacion
 from view.EvalPartial import instrucciones
 from view.PruebaPartial import probar_streamlit
+
 
 
 class MainView:
@@ -40,7 +43,7 @@ class MainView:
         # Define lo que abrá en la barra de menu
         with st.sidebar:
             self.menu_actual = option_menu("Menu", ["Inicio", 'Imprimir Acta', 'Crear Acta', 'Listar Actas'],
-                                        icons=['house', 'bi bi-printer', 'bi bi-file-earmark-plus-fill','archive'], menu_icon="cast", default_index=0, orientation="horizontal")
+                                        icons=['house', 'bi bi-printer', 'bi bi-file-earmark-plus-fill','archive'], menu_icon="bi bi-list", default_index=0, orientation="horizontal")
 
     def controlar_menu(self):
         """TODO poner aqui su codigo de interaccion"""
@@ -49,12 +52,14 @@ class MainView:
             st.write(texto)
         elif self.menu_actual == "Imprimir Acta":
             probar_streamlit(st)
+
         elif self.menu_actual == "Crear Acta":
             texto1 = instrucciones()
             st.write(texto1)
             agregar_evaluacion(st, self.controller)
         elif self.menu_actual == "Listar Actas":
             listar_evaluacion(st, self.controller)
+
 
 
 # Main call

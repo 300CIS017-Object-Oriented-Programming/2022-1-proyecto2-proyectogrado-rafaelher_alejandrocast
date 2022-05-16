@@ -1,4 +1,3 @@
-"""Instructions"""
 
 
 def consultar_instrucciones():
