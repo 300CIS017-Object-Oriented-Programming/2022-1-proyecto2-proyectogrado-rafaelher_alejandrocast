@@ -12,13 +12,13 @@ def instrucciones():
 def agregar_evaluacion(st, controller):
     # Objecto que modelará el formulario
     evaluacion_obj = EvaluacionAnteproyecto()
-    evaluacion_obj.nombre = st.text_input("Autor Trabajo de grado")
-    evaluacion_obj.id_estudiante = st.text_input("Id estudiante")
-    evaluacion_obj.tema_proyecto = st.text_input("Tema proyecto")
+    evaluacion_obj.nombre = st.text_input("Autor del trabajo de grado")
+    evaluacion_obj.id_estudiante = st.text_input("ID Estudiante")
+    evaluacion_obj.tema_proyecto = st.text_input("Tema del proyecto")
     evaluacion_obj.periodo = st.text_input("Periodo")
     evaluacion_obj.director = st.text_input("Director")
     evaluacion_obj.co_director = st.text_input("Co-Director")
-    evaluacion_obj.enfasis = st.text_input("Enfasis")
+    evaluacion_obj.enfasis = st.text_input("Énfasis")
     evaluacion_obj.modalidad = st.text_input("Modalidad")
     evaluacion_obj.jurado1 = st.text_input("Jurado 1")
     evaluacion_obj.jurado2 = st.text_input("Jurado 2")
@@ -39,37 +39,37 @@ def agregar_evaluacion(st, controller):
 
 def listar_evaluacion(st, controller):
     """Itera los elementos de evaluacion agregados y los muestra"""
-    st.title("Datos guardados")
+    i = 1
     for evaluacion in controller.evaluaciones:
+            st.title("ACTA NÚMERO "+str(i))
 
-
-            st.header("Nombre")
-            st.write(evaluacion.id_estudiante)
-       # with col1:
-            st.header("id estudiante")
+            st.subheader("Nombre")
             st.write(evaluacion.nombre)
+       # with col1:
+            st.subheader("ID Estudiante")
+            st.write(evaluacion.id_estudiante)
         #with col1:
-            st.header("Tema proyecto")
+            st.subheader("Tema del proyecto")
             st.write(evaluacion.tema_proyecto)
         #with col1:
-            st.header("Periodo")
+            st.subheader("Periodo")
             st.write(evaluacion.periodo)
         #with col1:
-            st.header("Director")
+            st.subheader("Director")
             st.write(evaluacion.director)
         #with col1:
-            st.header("Co-director")
+            st.subheader("Co-Director")
             st.write(evaluacion.co_director)
         #with col1:
-            st.header("Enfasis")
+            st.subheader("Énfasis")
             st.write(evaluacion.enfasis)
         #with col1:
-            st.header("Modalidad")
+            st.subheader("Modalidad")
             st.write(evaluacion.modalidad)
         #with col1:
-            st.header("Jurado 1")
+            st.subheader("Jurado 1")
             st.write(evaluacion.jurado1)
         #with col1:
-            st.header("Jurado 2")
+            st.subheader("Jurado 2")
             st.write(evaluacion.jurado2)
-
+            i += 1
