@@ -13,7 +13,7 @@ def agregar_evaluacion(st, controller):
     # Objecto que modelará el formulario
     st.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png')
     evaluacion_obj = EvaluacionAnteproyecto()
-    evaluacion_obj.nombre = st.text_input("Autor del trabajo de grado")
+    evaluacion_obj.nombre = st.text_input("Autor")
     evaluacion_obj.id_estudiante = st.text_input("ID Estudiante")
     evaluacion_obj.tema_proyecto = st.text_input("Tema del proyecto")
     evaluacion_obj.periodo = st.text_input("Periodo")
@@ -40,6 +40,7 @@ def listar_evaluacion(st, controller):
     i = 1
     for evaluacion in controller.evaluaciones:
             st.title("ACTA NÚMERO "+str(i))
+
             st.subheader("Nombre")
             st.write(evaluacion.nombre)
        # with col1:
@@ -86,12 +87,30 @@ def exp_acta(st, controller):
     pdf.cell(200, 10, txt='Facultad de Ingeniería', ln=1, align='C')
     pdf.cell(200, 10, txt='Maestría en Ingeniería', ln=1, align='C')
     pdf.cell(100, 10, txt='ACTA: '+"11"+'-'+año, ln=0, align='L')
-    pdf.cell(100, 10, txt='Fecha: '+dia, ln=0, align='R')
+    pdf.cell(100, 10, txt='Fecha: '+dia, ln=1, align='L')
     pdf.cell(200, 10, txt='ACTA DE EVALUACIÓN DE TRABAJO DE GRADO', ln=1, align='C')
 
     for posicion in controller.evaluaciones:
-            pdf.cell(50, 10, txt='Nombre: '+str(posicion.nombre), ln=1, align='L')
-            pdf.cell(50, 10, txt='ID: '+str(posicion.id_estudiante), ln=1, align='L')
+        pdf.cell(63, 10, txt='Trabajo de grado denominado: ', ln=0, align='L')
+        pdf.cell(80, 10, txt=str(posicion.tema_proyecto), ln=1, align='L')
+        pdf.cell(40, 10, txt='Autor: ', ln=0, align='L')
+        pdf.cell(100, 10, txt=str(posicion.nombre), ln=0, align='L')
+        pdf.cell(50, 10, txt='ID: '+str(posicion.id_estudiante), ln=1, align='L')
+        pdf.cell(40, 10, txt='Periodo: ', ln=0, align='L')
+        pdf.cell(100, 10, txt=str(posicion.periodo), ln=1, align='L')
+        pdf.cell(40, 10, txt='Director: ', ln=0, align='L')
+        pdf.cell(100, 10, txt=str(posicion.director), ln=1, align='L')
+        pdf.cell(40, 10, txt='Co-Director: ', ln=0, align='L')
+        pdf.cell(100, 10, txt=str(posicion.co_director), ln=1, align='L')
+        pdf.cell(40, 10, txt='Énfasis en:  ', ln=0, align='L')
+        pdf.cell(100, 10, txt=str(posicion.enfasis), ln=1, align='L')
+        pdf.cell(40, 10, txt='Modalidad:  ', ln=0, align='L')
+        pdf.cell(100, 10, txt=str(posicion.modalidad), ln=1, align='L')
+        pdf.cell(40, 10, txt='Jurado 1:  ', ln=0, align='L')
+        pdf.cell(100, 10, txt=str(posicion.jurado1), ln=1, align='L')
+        pdf.cell(40, 10, txt='Jurado 2:  ', ln=0, align='L')
+        pdf.cell(100, 10, txt=str(posicion.jurado2), ln=1, align='L')
+
 
 
     enviar_calificacion = st.button('Generar PDF')
