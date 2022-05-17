@@ -52,8 +52,7 @@ class MainView:
             texto = consultar_instrucciones()
             st.write(texto)
         elif self.menu_actual == "Imprimir Acta":
-            conectbas(st)
-
+            return
         elif self.menu_actual == "Crear Acta":
             texto1 = instrucciones()
             st.write(texto1)
