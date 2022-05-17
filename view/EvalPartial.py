@@ -71,9 +71,17 @@ def listar_evaluacion(st, controller):
             st.write(evaluacion.jurado2)
             i += 1
 
+<<<<<<< Updated upstream
 def exp_acta(st, controller):
+=======
+
+
+
+def exp_acta(st, controller, i = 1):
+    act = str(i)
+    i += 1
+>>>>>>> Stashed changes
     from datetime import datetime
-    numact = 1
     st.title('Generar PDF')
     pdf = FPDF()
     pdf.add_page()
@@ -85,7 +93,7 @@ def exp_acta(st, controller):
 
     pdf.cell(200, 10, txt='Facultad de Ingeniería', ln=1, align='C')
     pdf.cell(200, 10, txt='Maestría en Ingeniería', ln=1, align='C')
-    pdf.cell(100, 10, txt='ACTA: '+"11"+'-'+año, ln=0, align='L')
+    pdf.cell(100, 10, txt='ACTA: '+act+'-'+año, ln=0, align='L')
     pdf.cell(100, 10, txt='Fecha: '+dia, ln=0, align='R')
     contador = 1
     for posicion in controller.evaluaciones:
@@ -101,7 +109,6 @@ def exp_acta(st, controller):
         pdf.output(numacta+'.pdf')
         st.write('ACTA GENERADA')
         st.write('El nombre del acta es:', numacta + '.pdf')
-    while numact < 10000:
-        numact += 1
+
 
 # Main call
