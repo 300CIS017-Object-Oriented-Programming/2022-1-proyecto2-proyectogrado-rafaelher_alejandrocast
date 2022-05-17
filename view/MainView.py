@@ -10,6 +10,7 @@ from controller.EvalController import EvaluadorController
 from view.AboutPartial import consultar_instrucciones
 from view.EvalPartial import listar_evaluacion, agregar_evaluacion, exp_acta
 from view.EvalPartial import instrucciones
+from view.calificaracta import *
 from view.PruebaPartial import probar_streamlit
 
 
@@ -39,11 +40,11 @@ class MainView:
         st.set_page_config(page_title="Sistema de gestion de notas", page_icon='', layout="wide",
                            initial_sidebar_state="expanded")
         # Defines the number of available columns del area principal
-        self.col1, self.col2, self.col3 = st.columns([1, 1, 1])
+        self.col1, self.col2, self.col3, self.col4 = st.columns([1, 1, 1, 1])
 
         # Define lo que abrá en la barra de menu
         with st.sidebar:
-            self.menu_actual = option_menu("Menu", ["Inicio", 'Imprimir Acta', 'Crear Acta', 'Listar Actas'],
+            self.menu_actual = option_menu("Menu", ["Inicio", 'Imprimir Acta', 'Crear Acta', 'Listar Actas', 'Calificar Acta'],
                                         icons=['house', 'bi bi-printer', 'bi bi-file-earmark-plus-fill','archive'], menu_icon="bi bi-list", default_index=0, orientation="horizontal")
 
     def controlar_menu(self):
@@ -62,6 +63,8 @@ class MainView:
             listar_evaluacion(st, self.controller)
             import controller
             exp_acta(st, controller)
+        #elif self.menu_actual == "Calificar Acta":
+            #calificar
 
 
 

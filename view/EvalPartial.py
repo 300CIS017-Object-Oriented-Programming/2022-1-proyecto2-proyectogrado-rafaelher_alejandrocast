@@ -93,7 +93,7 @@ def exp_acta(st, controller):
     pdf.cell(200, 10, txt='Maestría en Ingeniería', ln=2, align='C')
     pdf.cell(200, 10, txt='ACTA: ', ln=3, align='L')
     pdf.cell(200, 10, txt='Fecha: ', ln=2, align='R')
-    #pdf.cell(200, 10, txt=evaluacion_obj[0], ln=2, align='R')
+    pdf.cell(200, 10, txt=evaluacion_obj[0], ln=2, align='R')
 
 
 
