@@ -1,3 +1,5 @@
+from fpdf import FPDF
+
 from model.EvalAnteproy import EvaluacionAnteproyecto
 
 """ Este archivo contine las funcionalidades de la vista relacionado con la evaluacion de los anteproyectos"""
@@ -80,13 +82,16 @@ def exp_acta(st, controller):
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font('Arial', size=13)
-    pdf.imager('https://www.google.com.co/search?q=javeriana%20cali%20logo&tbm=isch&hl=es&tbs=ic:trans&sa=X&ved=0CAMQpwVqFwoTCJj4z5ya5fcCFQAAAAAdAAAAABAC&biw=1686&bih=833#imgrc=DPXwGd5OaNlLeM')
-    pdf.cell(200,10, txt='ACTA DE EVALUACION DE GRADO', ln=1, align='C')
-    pdf.cell(200, 10, txt='ACTA DE EVALUACION DE GRADO22', ln=1, align='C')
+    #pdf.image('D:\\Poo2pro\\2022-1-proyecto2-proyectogrado-rafaelher_alejandrocast\\puj_logo_azul_copia1_0.png',10 , 8, 33)
+
+    pdf.cell(200, 10, txt='ACTA DE EVALUACION DE GRADO', ln=1, align='C')
+    pdf.cell(200, 10, txt='ACTA DE EVALUACION DE GRADO22', ln=2, align='C')
+    #pdf.cell(200, 10, txt=st.write(evaluacion.id_estudiante), ln=2, align='C')
+
 
     enviar_calificacion = st.button('Generar PDF')
     if enviar_calificacion:
-        pdf.ouput('nombre de acta-.pdf')
+        pdf.output('nombre de acta-.pdf')
         st.write('ACTA GENERADA')
 
 
