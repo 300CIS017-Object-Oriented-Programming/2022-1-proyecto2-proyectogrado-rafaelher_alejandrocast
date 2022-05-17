@@ -87,17 +87,16 @@ def exp_acta(st, controller):
     pdf.cell(200, 10, txt='Maestría en Ingeniería', ln=1, align='C')
     pdf.cell(100, 10, txt='ACTA: '+"11"+'-'+año, ln=0, align='L')
     pdf.cell(100, 10, txt='Fecha: '+dia, ln=0, align='R')
-    contador = 1
+    pdf.cell(200, 10, txt='ACTA DE EVALUACIÓN DE TRABAJO DE GRADO', ln=1, align='C')
+
     for posicion in controller.evaluaciones:
-        if(contador == 1):
-            pdf.cell(50, 10, txt='Nombre: '+posicion.nombre, ln=1, align='L')
+            pdf.cell(50, 10, txt='Nombre: '+str(posicion.nombre), ln=1, align='L')
             pdf.cell(50, 10, txt='ID: '+str(posicion.id_estudiante), ln=1, align='L')
-        contador += 1
+
 
     enviar_calificacion = st.button('Generar PDF')
     numacta = st.text_input('Nombre del acta', '')
     if enviar_calificacion:
-        pdf.output('nombre de acta-.pdf')
         pdf.output(numacta+'.pdf')
         st.write('ACTA GENERADA')
         st.write('El nombre del acta es:', numacta + '.pdf')
