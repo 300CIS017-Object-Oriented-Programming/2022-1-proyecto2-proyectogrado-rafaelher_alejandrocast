@@ -1,14 +1,9 @@
 from fpdf import FPDF
-
 from model.EvalAnteproy import EvaluacionAnteproyecto
-
 """ Este archivo contine las funcionalidades de la vista relacionado con la evaluacion de los anteproyectos"""
-
-
 def instrucciones():
     return """
            Por favor rellenar todos los espacios en este apartado para poder crear el acta. \n\n\n\n\n
-
            """
 
 
@@ -26,12 +21,9 @@ def agregar_evaluacion(st, controller):
     evaluacion_obj.modalidad = st.text_input("Modalidad")
     evaluacion_obj.jurado1 = st.text_input("Jurado 1")
     evaluacion_obj.jurado2 = st.text_input("Jurado 2")
-
-
     # TODO
     # Agregar campo para leer el tema y la versión de la evaluación del proyecto
     enviado_btn = st.button("Guardar")
-
     # Cuando se oprime el boton se agrega a la lista
     if enviado_btn:
         controller.agregar_evaluacion(evaluacion_obj)
@@ -39,14 +31,11 @@ def agregar_evaluacion(st, controller):
     # Retorna el controlador pq solo las colecciones se pasan en python por referencia,
     # entonces de esta manera se actualiza el controlador en la vista principal
     return controller
-
-
 def listar_evaluacion(st, controller):
     """Itera los elementos de evaluacion agregados y los muestra"""
     i = 1
     for evaluacion in controller.evaluaciones:
             st.title("ACTA NÚMERO "+str(i))
-
             st.subheader("Nombre")
             st.write(evaluacion.nombre)
        # with col1:
@@ -86,6 +75,7 @@ def exp_acta(st, controller):
     pdf.add_page()
 
     pdf.set_font('Arial', size=13)
+    #pdf.image('D:\\Poo2pro\\2022-1-proyecto2-proyectogrado-rafaelher_alejandrocast\\puj_logo_azul_copia1_0.png',10 , 8, 33)
     #pdf.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png')
     #pdf.image('https://www2.javerianacali.edu.co/sites/ujc/files/node/announcement/field_image_box/logo_javeriana_cali_0.jpg')
 
@@ -93,13 +83,17 @@ def exp_acta(st, controller):
     pdf.cell(200, 10, txt='Maestría en Ingeniería', ln=2, align='C')
     pdf.cell(200, 10, txt='ACTA: ', ln=3, align='L')
     pdf.cell(200, 10, txt='Fecha: ', ln=2, align='R')
-    pdf.cell(200, 10, txt=evaluacion_obj[0], ln=2, align='R')
+    #pdf.cell(200, 10, txt=evaluacion_obj[0], ln=2, align='R')
 
+    pdf.cell(200, 10, txt='ACTA DE EVALUACION DE GRADO', ln=1, align='C')
+    pdf.cell(200, 10, txt='ACTA DE EVALUACION DE GRADO22', ln=2, align='C')
+    #pdf.cell(200, 10, txt=st.write(evaluacion.id_estudiante), ln=2, align='C')
 
 
     enviar_calificacion = st.button('Generar PDF')
     numacta = st.text_input('Nombre del acta', '')
     if enviar_calificacion:
+        pdf.output('nombre de acta-.pdf')
         pdf.output(numacta+'.pdf')
         st.write('ACTA GENERADA')
         st.write('El nombre del acta es:', numacta + '.pdf')

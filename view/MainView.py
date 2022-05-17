@@ -1,5 +1,3 @@
-
-
 import streamlit as st
 
 
@@ -44,7 +42,7 @@ class MainView:
 
         # Define lo que abrá en la barra de menu
         with st.sidebar:
-            self.menu_actual = option_menu("Menu", ["Inicio", 'Imprimir Acta', 'Crear Acta', 'Listar Actas', 'Calificar Acta'],
+            self.menu_actual = option_menu("Menu", ["Inicio", 'Imprimir Acta', 'Crear Acta', 'Listar Actas', 'Calificar Actas'],
                                         icons=['house', 'bi bi-printer', 'bi bi-file-earmark-plus-fill','archive'], menu_icon="bi bi-list", default_index=0, orientation="horizontal")
 
     def controlar_menu(self):
@@ -63,10 +61,8 @@ class MainView:
             listar_evaluacion(st, self.controller)
             import controller
             exp_acta(st, controller)
-        #elif self.menu_actual == "Calificar Acta":
-            #calificar
-
-
+        elif self.menu_actual == "Calificar Actas":
+            calificar_acta(st, self.controller)
 
 # Main call
 if __name__ == "__main__":
