@@ -11,8 +11,10 @@ def instrucciones():
 
            """
 
+
 def agregar_evaluacion(st, controller):
     # Objecto que modelará el formulario
+    st.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png')
     evaluacion_obj = EvaluacionAnteproyecto()
     evaluacion_obj.nombre = st.text_input("Autor del trabajo de grado")
     evaluacion_obj.id_estudiante = st.text_input("ID Estudiante")
@@ -78,21 +80,29 @@ def listar_evaluacion(st, controller):
 
 
 def exp_acta(st, controller):
+
     st.title('Generar PDF')
     pdf = FPDF()
     pdf.add_page()
-    pdf.set_font('Arial', size=13)
-    #pdf.image('D:\\Poo2pro\\2022-1-proyecto2-proyectogrado-rafaelher_alejandrocast\\puj_logo_azul_copia1_0.png',10 , 8, 33)
 
-    pdf.cell(200, 10, txt='ACTA DE EVALUACION DE GRADO', ln=1, align='C')
-    pdf.cell(200, 10, txt='ACTA DE EVALUACION DE GRADO22', ln=2, align='C')
-    #pdf.cell(200, 10, txt=st.write(evaluacion.id_estudiante), ln=2, align='C')
+    pdf.set_font('Arial', size=13)
+    #pdf.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png')
+    #pdf.image('https://www2.javerianacali.edu.co/sites/ujc/files/node/announcement/field_image_box/logo_javeriana_cali_0.jpg')
+
+    pdf.cell(200, 10, txt='Facultad de Ingeniería', ln=1, align='C')
+    pdf.cell(200, 10, txt='Maestría en Ingeniería', ln=2, align='C')
+    pdf.cell(200, 10, txt='ACTA: ', ln=3, align='L')
+    pdf.cell(200, 10, txt='Fecha: ', ln=2, align='R')
+    #pdf.cell(200, 10, txt=evaluacion_obj[0], ln=2, align='R')
+
 
 
     enviar_calificacion = st.button('Generar PDF')
+    numacta = st.text_input('Nombre del acta', '')
     if enviar_calificacion:
-        pdf.output('nombre de acta-.pdf')
+        pdf.output(numacta+'.pdf')
         st.write('ACTA GENERADA')
+        st.write('El nombre del acta es:', numacta + '.pdf')
 
 
 # Main call
