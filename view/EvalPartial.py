@@ -73,9 +73,12 @@ def listar_evaluacion(st, controller):
 
 
 def exp_acta(st, controller):
+    numact = 1
     from datetime import datetime
     dia = datetime.today().strftime('%Y-%m-%d')
-    
+    año = datetime.today().strftime('%Y')
+
+    numact2 = str(numact)
     st.title('Generar PDF')
     pdf = FPDF()
     pdf.add_page()
@@ -86,7 +89,7 @@ def exp_acta(st, controller):
 
     pdf.cell(200, 10, txt='Facultad de Ingeniería', ln=1, align='C')
     pdf.cell(200, 10, txt='Maestría en Ingeniería', ln=1, align='C')
-    pdf.cell(100, 10, txt='ACTA: ', ln=0, align='L')
+    pdf.cell(100, 10, txt='ACTA: '+numact2+'-'+año, ln=0, align='L')
     pdf.cell(100, 10, txt='Fecha: '+dia, ln=0, align='R')
 
 
@@ -97,6 +100,7 @@ def exp_acta(st, controller):
         pdf.output(numacta+'.pdf')
         st.write('ACTA GENERADA')
         st.write('El nombre del acta es:', numacta + '.pdf')
-
+    while numact < 10000:
+        numact += 1
 
 # Main call

@@ -59,7 +59,6 @@ class MainView:
             agregar_evaluacion(st, self.controller)
         elif self.menu_actual == "Listar Actas":
             listar_evaluacion(st, self.controller)
-            import controller
             exp_acta(st, controller)
         elif self.menu_actual == "Calificar Actas":
             calificar_acta(st, self.controller)
