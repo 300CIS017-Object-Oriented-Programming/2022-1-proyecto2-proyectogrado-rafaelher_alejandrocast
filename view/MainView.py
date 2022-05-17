@@ -3,13 +3,14 @@ import streamlit as st
 
 from streamlit_option_menu import option_menu
 
-
+import controller
 from controller.EvalController import EvaluadorController
 from view.AboutPartial import consultar_instrucciones
 from view.EvalPartial import listar_evaluacion, agregar_evaluacion, exp_acta
 from view.EvalPartial import instrucciones
 from view.calificaracta import *
 from view.PruebaPartial import probar_streamlit
+from calificaracta import calificar_acta
 
 
 
@@ -62,6 +63,7 @@ class MainView:
             exp_acta(st, controller)
         elif self.menu_actual == "Calificar Actas":
             calificar_acta(st, self.controller)
+            exp_acta(st, controller)
 
 # Main call
 if __name__ == "__main__":

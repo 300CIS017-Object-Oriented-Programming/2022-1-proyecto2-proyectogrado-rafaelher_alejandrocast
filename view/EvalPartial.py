@@ -1,11 +1,6 @@
-<<<<<<< Updated upstream
+
 import datetime
-
-=======
-import self
->>>>>>> Stashed changes
 from fpdf import FPDF
-
 from model.EvalAnteproy import EvaluacionAnteproyecto
 
 """ Este archivo contine las funcionalidades de la vista relacionado con la evaluacion de los anteproyectos"""
@@ -13,7 +8,6 @@ def instrucciones():
     return """
            Por favor rellenar todos los espacios en este apartado para poder crear el acta. \n\n\n\n\n
            """
-
 
 def agregar_evaluacion(st, controller):
     # Objecto que modelará el formulario
@@ -39,13 +33,9 @@ def agregar_evaluacion(st, controller):
     # Retorna el controlador pq solo las colecciones se pasan en python por referencia,
     # entonces de esta manera se actualiza el controlador en la vista principal
     return controller
-<<<<<<< Updated upstream
+
 def listar_evaluacion(st, controller):
-=======
 
-
-def listar_evaluacion(st, controller, evaluacion):
->>>>>>> Stashed changes
     """Itera los elementos de evaluacion agregados y los muestra"""
     i = 1
     for evaluacion in controller.evaluaciones:
@@ -82,41 +72,24 @@ def listar_evaluacion(st, controller, evaluacion):
             i += 1
 
 
-<<<<<<< Updated upstream
+
+
 def exp_acta(st, controller):
-    numact = 1
     from datetime import datetime
-    dia = datetime.today().strftime('%Y-%m-%d')
-    año = datetime.today().strftime('%Y')
-
-    numact2 = str(numact)
-=======
-
-def exp_acta(st, controller):
->>>>>>> Stashed changes
+    numact = 1
     st.title('Generar PDF')
     pdf = FPDF()
     pdf.add_page()
-
+    dia = datetime.today().strftime('%Y-%m-%d')
+    año = datetime.today().strftime('%Y')
     pdf.set_font('Arial', size=13)
-<<<<<<< Updated upstream
+
     pdf.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png',15 , 10, 40)
-
-=======
-    pdf.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png',15 , 8 , 33)
-    #pdf.image('https://www2.javerianacali.edu.co/sites/ujc/files/node/announcement/field_image_box/logo_javeriana_cali_0.jpg')
-
-    pdf.cell(200, 10, txt='Facultad de Ingeniería', ln=1, align='C')
-    pdf.cell(200, 10, txt='Maestría en Ingeniería', ln=2, align='C')
-    pdf.cell(200, 10, txt='ACTA: ', ln=3, align='L')
-    pdf.cell(200, 10, txt='Fecha: ', ln=2, align='R')
->>>>>>> Stashed changes
 
     pdf.cell(200, 10, txt='Facultad de Ingeniería', ln=1, align='C')
     pdf.cell(200, 10, txt='Maestría en Ingeniería', ln=1, align='C')
-    pdf.cell(100, 10, txt='ACTA: '+numact2+'-'+año, ln=0, align='L')
+    pdf.cell(100, 10, txt='ACTA: '+"11"+'-'+año, ln=0, align='L')
     pdf.cell(100, 10, txt='Fecha: '+dia, ln=0, align='R')
-
 
     enviar_calificacion = st.button('Generar PDF')
     numacta = st.text_input('Nombre del acta', '')

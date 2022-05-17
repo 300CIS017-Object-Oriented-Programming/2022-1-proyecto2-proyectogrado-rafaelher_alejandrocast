@@ -1,4 +1,4 @@
-from multiapp import *
+#from multiapp import *
 
 def calificar_acta(st, controller):
     st.title("CALIFICACIÓN DE ACTAS ")
