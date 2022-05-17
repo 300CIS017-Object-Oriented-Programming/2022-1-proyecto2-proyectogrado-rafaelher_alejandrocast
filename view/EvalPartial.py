@@ -71,9 +71,6 @@ def listar_evaluacion(st, controller):
             st.write(evaluacion.jurado2)
             i += 1
 
-
-
-
 def exp_acta(st, controller):
     from datetime import datetime
     numact = 1
@@ -90,6 +87,12 @@ def exp_acta(st, controller):
     pdf.cell(200, 10, txt='Maestría en Ingeniería', ln=1, align='C')
     pdf.cell(100, 10, txt='ACTA: '+"11"+'-'+año, ln=0, align='L')
     pdf.cell(100, 10, txt='Fecha: '+dia, ln=0, align='R')
+    contador = 1
+    for posicion in controller.evaluaciones:
+        if(contador == 1):
+            pdf.cell(50, 10, txt='Nombre: '+posicion.nombre, ln=1, align='L')
+            pdf.cell(50, 10, txt='ID: '+str(posicion.id_estudiante), ln=1, align='L')
+        contador += 1
 
     enviar_calificacion = st.button('Generar PDF')
     numacta = st.text_input('Nombre del acta', '')
