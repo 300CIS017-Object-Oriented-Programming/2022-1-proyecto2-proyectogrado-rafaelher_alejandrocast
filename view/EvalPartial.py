@@ -1,9 +1,11 @@
 
-import datetime
-from fpdf import FPDF
-from model.EvalAnteproy import EvaluacionAnteproyecto
 
 """ Este archivo contine las funcionalidades de la vista relacionado con la evaluacion de los anteproyectos"""
+from fpdf import FPDF
+
+from model.EvalAnteproy import EvaluacionAnteproyecto
+
+
 def instrucciones():
     return """
            Por favor rellenar todos los espacios en este apartado para poder crear el acta. \n\n\n\n\n
@@ -72,6 +74,9 @@ def listar_evaluacion(st, controller):
             st.write(evaluacion.jurado2)
             i += 1
 
+
+
+
 def exp_acta(st, controller):
     from datetime import datetime
     numact = 1
@@ -81,14 +86,14 @@ def exp_acta(st, controller):
     dia = datetime.today().strftime('%Y-%m-%d')
     año = datetime.today().strftime('%Y')
     pdf.set_font('Arial', size=13)
-
     pdf.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png',15 , 10, 40)
-
     pdf.cell(200, 10, txt='Facultad de Ingeniería', ln=1, align='C')
     pdf.cell(200, 10, txt='Maestría en Ingeniería', ln=1, align='C')
     pdf.cell(100, 10, txt='ACTA: '+"11"+'-'+año, ln=0, align='L')
     pdf.cell(100, 10, txt='Fecha: '+dia, ln=1, align='L')
     pdf.cell(200, 10, txt='ACTA DE EVALUACIÓN DE TRABAJO DE GRADO', ln=1, align='C')
+
+
 
     for posicion in controller.evaluaciones:
         pdf.cell(63, 10, txt='Trabajo de grado denominado: ', ln=0, align='L')
@@ -111,7 +116,16 @@ def exp_acta(st, controller):
         pdf.cell(40, 10, txt='Jurado 2:  ', ln=0, align='L')
         pdf.cell(100, 10, txt=str(posicion.jurado2), ln=1, align='L')
 
-
+    pdf.add_page()
+    dia = datetime.today().strftime('%Y-%m-%d')
+    año = datetime.today().strftime('%Y')
+    pdf.set_font('Arial', size=13)
+    pdf.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png',15 , 10, 40)
+    pdf.cell(200, 10, txt='Facultad de Ingeniería', ln=1, align='C')
+    pdf.cell(200, 10, txt='Maestría en Ingeniería', ln=1, align='C')
+    pdf.cell(100, 10, txt='ACTA: '+"11"+'-'+año, ln=0, align='L')
+    pdf.cell(100, 10, txt='Fecha: '+dia, ln=1, align='L')
+    pdf.cell(200, 10, txt='ACTA DE EVALUACIÓN DE TRABAJO DE GRADO', ln=1, align='C')
 
     enviar_calificacion = st.button('Generar PDF')
     numacta = st.text_input('Nombre del acta', '')

@@ -4,3 +4,4 @@ streamlit-option-menu>=0.3.2
 pydataxm == 0.2.6
 
 fpdf~=1.7.2
+gsheetsdb==0.1.13.1

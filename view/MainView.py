@@ -9,7 +9,7 @@ from view.AboutPartial import consultar_instrucciones
 from view.EvalPartial import listar_evaluacion, agregar_evaluacion, exp_acta
 from view.EvalPartial import instrucciones
 from view.calificaracta import *
-from view.PruebaPartial import probar_streamlit
+from view.PruebaPartial import conectbas
 from calificaracta import calificar_acta
 
 
@@ -52,7 +52,7 @@ class MainView:
             texto = consultar_instrucciones()
             st.write(texto)
         elif self.menu_actual == "Imprimir Acta":
-            probar_streamlit(st)
+            conectbas(st)
 
         elif self.menu_actual == "Crear Acta":
             texto1 = instrucciones()
