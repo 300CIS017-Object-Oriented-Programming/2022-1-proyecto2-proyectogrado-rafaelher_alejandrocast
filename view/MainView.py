@@ -3,12 +3,12 @@ from streamlit_option_menu import option_menu
 import controller
 from controller.EvalController import EvaluadorController
 from view.AboutPartial import consultar_instrucciones
-from view.EvalPartial import listar_evaluacion, agregar_evaluacion, exp_acta
-from view.EvalPartial import instrucciones
-from view.calificaracta import *
+from view.CrearActa import listar_evaluacion, agregar_evaluacion, exp_acta
+from view.CrearActa import instrucciones
+from view.CalificarActa import *
 from view.PruebaPartial import *
-from calificaracta import calificar_acta
-from imprimiracta import imp_acta
+from CalificarActa import calificar_acta
+from ImprimirActa import imp_acta
 
 
 
