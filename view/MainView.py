@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 import controller
 from controller.EvalController import EvaluadorController
-from view.AboutPartial import consultar_instrucciones
+from view.Inicio import consultar_instrucciones
 from view.CrearActa import listar_evaluacion, agregar_evaluacion, exp_acta
 from view.CrearActa import instrucciones
 from view.CalificarActa import *
