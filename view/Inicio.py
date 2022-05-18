@@ -1,5 +1,3 @@
-
-
 def consultar_instrucciones():
     return """
            #### ¡Hola bienvenidos!

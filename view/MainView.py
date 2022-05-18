@@ -6,7 +6,6 @@ from view.Inicio import consultar_instrucciones
 from view.CrearActa import listar_evaluacion, agregar_evaluacion, exp_acta
 from view.CrearActa import instrucciones
 from view.CalificarActa import *
-from view.PruebaPartial import *
 from CalificarActa import calificar_acta
 from ImprimirActa import imp_acta
 
