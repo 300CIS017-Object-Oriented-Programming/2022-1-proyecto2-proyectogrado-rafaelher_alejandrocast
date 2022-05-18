@@ -15,7 +15,6 @@ def imp_acta(st, controller):
     pdf.add_page()
     ids = []
     nombres = controller.nombres
-    st.title("CALIFICACIÓN DE ACTAS ")
     st.subheader("Selecciona el ID del estudiante a Imprimir")
     for calificacion in controller.evaluaciones:
         ids.append(calificacion.id_estudiante)
@@ -57,6 +56,7 @@ def imp_acta(st, controller):
             pdf.cell(100, 10, txt=str(posicion.jurado1), ln=1, align='L')
             pdf.cell(40, 10, txt='Jurado 2:  ', ln=0, align='L')
             pdf.cell(100, 10, txt=str(posicion.jurado2), ln=1, align='L')
+        contador += 1
     """
     pdf.add_page()
     dia = datetime.today().strftime('%Y-%m-%d')
@@ -69,8 +69,8 @@ def imp_acta(st, controller):
     pdf.cell(100, 10, txt='Fecha: '+dia, ln=1, align='L')
     pdf.cell(200, 10, txt='ACTA DE EVALUACIÓN DE TRABAJO DE GRADO', ln=1, align='C')
     """
-    enviar_calificacion = st.button('Generar PDF')
     numacta = st.text_input('Nombre del acta', '')
+    enviar_calificacion = st.button('Generar PDF')
     if enviar_calificacion:
         pdf.output(numacta+'.pdf')
         st.write('ACTA GENERADA')
