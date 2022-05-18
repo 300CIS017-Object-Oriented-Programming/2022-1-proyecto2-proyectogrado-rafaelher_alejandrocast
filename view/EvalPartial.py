@@ -86,13 +86,18 @@ def exp_acta(st, controller):
     pdf.add_page()
     dia = datetime.today().strftime('%Y-%m-%d')
     año = datetime.today().strftime('%Y')
-    pdf.set_font('Arial', size=13)
+    pdf.set_font('Arial', "B", size=17)
     pdf.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png',15 , 10, 40)
     pdf.cell(200, 10, txt='Facultad de Ingeniería', ln=1, align='C')
-    pdf.cell(200, 10, txt='Maestría en Ingeniería', ln=1, align='C')
-    pdf.cell(100, 10, txt='ACTA: '+"11"+'-'+año, ln=0, align='L')
-    pdf.cell(100, 10, txt='Fecha: '+dia, ln=1, align='L')
+    pdf.cell(200, 10, txt='Maestría en Ingeniería', ln=2, align='C')
+    pdf.set_font('Arial', "B", size=13)
+    pdf.cell(150, 10, txt='ACTA: '+"11"+'-'+año, ln=0, align='L')
+    pdf.cell(16, 10, txt='Fecha: ', ln=0, align='L')
+    pdf.set_font('Arial', size=13)
+    pdf.cell(0, 10, txt=dia, ln=1, align='L')
+    pdf.set_font('Arial', "B", size=13)
     pdf.cell(200, 10, txt='ACTA DE EVALUACIÓN DE TRABAJO DE GRADO', ln=1, align='C')
+    pdf.set_font('Arial', size=13)
 
 
 
