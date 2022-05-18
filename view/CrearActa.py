@@ -13,7 +13,6 @@ def instrucciones():
 
 def agregar_evaluacion(st, controller):
     # Objecto que modelará el formulario
-    st.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png')
     evaluacion_obj = EvaluacionAnteproyecto()
     evaluacion_obj.nombre = st.text_input("Autor")
     evaluacion_obj.id_estudiante = st.text_input("ID Estudiante")
@@ -37,7 +36,17 @@ def agregar_evaluacion(st, controller):
     # entonces de esta manera se actualiza el controlador en la vista principal
     return controller
 
+
+
+
 def listar_evaluacion(st, controller):
+    ids = []
+    nombres = controller.nombres
+    st.title("CALIFICACIÓN DE ACTAS ")
+    st.subheader("Selecciona el ID del estudiante a Imprimir")
+    for calificacion in controller.evaluaciones:
+        ids.append(calificacion.id_estudiante)
+    seleccion = st.selectbox("Seleccione:", ids)
 
     """Itera los elementos de evaluacion agregados y los muestra"""
     i = 1
@@ -75,8 +84,7 @@ def listar_evaluacion(st, controller):
             st.write(evaluacion.jurado2)
             i += 1
 
-
-
+"""
 
 def exp_acta(st, controller):
     from datetime import datetime
@@ -141,5 +149,5 @@ def exp_acta(st, controller):
         st.write('El nombre del acta es:', numacta + '.pdf')
     while numact < 10000:
         numact += 1
-
+"""
 # Main call

@@ -1,6 +1,7 @@
 import streamlit as st
 
 def calificar_acta(st, controller):
+
     ids = []
     nombres = controller.nombres
     st.title("CALIFICACIÓN DE ACTAS ")
