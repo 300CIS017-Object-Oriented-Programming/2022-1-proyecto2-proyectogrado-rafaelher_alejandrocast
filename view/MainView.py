@@ -3,7 +3,7 @@ from streamlit_option_menu import option_menu
 import controller
 from controller.EvalController import EvaluadorController
 from view.Inicio import consultar_instrucciones
-from view.CrearActa import listar_evaluacion, agregar_evaluacion, exp_acta
+from view.CrearActa import listar_evaluacion, agregar_evaluacion
 from view.CrearActa import instrucciones
 from view.CalificarActa import *
 from CalificarActa import calificar_acta
@@ -40,10 +40,13 @@ class MainView:
 
         # Define lo que abrá en la barra de menu
         with st.sidebar:
+            st.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png', '',
+                     300, )
             self.menu_actual = option_menu("Menu", ["Inicio", 'Imprimir Acta', 'Crear Acta', 'Listar Actas', 'Calificar Actas'],
                                         icons=['house', 'bi bi-printer', 'bi bi-file-earmark-plus-fill','archive'], menu_icon="bi bi-list", default_index=0, orientation="horizontal")
 
     def controlar_menu(self):
+        st.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png', '', 300, )
         """TODO poner aqui su codigo de interaccion"""
         if self.menu_actual == "Inicio":
             texto = consultar_instrucciones()
@@ -57,7 +60,7 @@ class MainView:
             agregar_evaluacion(st, self.controller)
         elif self.menu_actual == "Listar Actas":
             listar_evaluacion(st, self.controller)
-            exp_acta(st, self.controller)
+            #exp_acta(st, self.controller)
         elif self.menu_actual == "Calificar Actas":
             calificar_acta(st, self.controller)
 
