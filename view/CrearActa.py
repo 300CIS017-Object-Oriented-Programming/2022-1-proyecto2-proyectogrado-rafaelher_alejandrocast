@@ -37,20 +37,29 @@ def agregar_evaluacion(st, controller):
     return controller
 
 
+def search(clave, d):
+   i = 0
+   for key in d:
+      if key == clave:
+         return i
+      i+=1
 
 
 def listar_evaluacion(st, controller):
     ids = []
     nombres = controller.nombres
-    st.title("CALIFICACIÓN DE ACTAS ")
-    st.subheader("Selecciona el ID del estudiante a Imprimir")
+    st.title("LISTA DE ACTAS ")
+    st.subheader("Selecciona el ID del estudiante a listar")
     for calificacion in controller.evaluaciones:
         ids.append(calificacion.id_estudiante)
     seleccion = st.selectbox("Seleccione:", ids)
 
     """Itera los elementos de evaluacion agregados y los muestra"""
     i = 1
+    index = search(seleccion, nombres)
+    contador = 0
     for evaluacion in controller.evaluaciones:
+        if (contador == index):
             st.title("ACTA NÚMERO "+str(i))
 
             st.subheader("Nombre")
@@ -82,7 +91,8 @@ def listar_evaluacion(st, controller):
         #with col1:
             st.subheader("Jurado 2")
             st.write(evaluacion.jurado2)
-            i += 1
+        i += 1
+        contador += 1
 
 """
 
