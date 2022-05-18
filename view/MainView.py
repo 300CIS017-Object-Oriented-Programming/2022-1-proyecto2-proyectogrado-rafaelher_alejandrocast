@@ -8,6 +8,7 @@ from view.EvalPartial import instrucciones
 from view.calificaracta import *
 from view.PruebaPartial import *
 from calificaracta import calificar_acta
+from imprimiracta import imp_acta
 
 
 
@@ -49,7 +50,7 @@ class MainView:
             texto = consultar_instrucciones()
             st.write(texto)
         elif self.menu_actual == "Imprimir Acta":
-            return
+            imp_acta(st,controller)
         elif self.menu_actual == "Crear Acta":
             texto1 = instrucciones()
             st.write(texto1)
