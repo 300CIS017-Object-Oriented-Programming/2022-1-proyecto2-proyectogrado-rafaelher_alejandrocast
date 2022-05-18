@@ -7,7 +7,7 @@ from view.CrearActa import listar_evaluacion, agregar_evaluacion, exp_acta
 from view.CrearActa import instrucciones
 from view.CalificarActa import *
 from CalificarActa import calificar_acta
-from ImprimirActa import imp_acta
+from ImprimirActa import verificar_acta,imp_acta
 
 
 
@@ -49,6 +49,7 @@ class MainView:
             texto = consultar_instrucciones()
             st.write(texto)
         elif self.menu_actual == "Imprimir Acta":
+            verificar_acta(st, self.controller)
             imp_acta(st, self.controller)
         elif self.menu_actual == "Crear Acta":
             texto1 = instrucciones()

@@ -1,5 +1,13 @@
 from fpdf import FPDF
 
+def verificar_acta(st, controller):
+    ids = []
+    nombres = controller.nombres
+    st.title("CALIFICACIÓN DE ACTAS ")
+    st.subheader("Selecciona el ID del estudiante a Imprimir")
+    for calificacion in controller.evaluaciones:
+        ids.append(calificacion.id_estudiante)
+    seleccion = st.selectbox("Seleccione:", ids)
 
 def imp_acta(st, controller):
     from datetime import datetime
