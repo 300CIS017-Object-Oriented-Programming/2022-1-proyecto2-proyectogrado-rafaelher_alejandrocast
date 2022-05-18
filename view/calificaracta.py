@@ -2,13 +2,16 @@ import streamlit as st
 
 def calificar_acta(st, controller):
     ids = []
+    nombres = controller.nombres
     st.title("CALIFICACIÓN DE ACTAS ")
     st.subheader("Selecciona el ID del estudiante a calificar")
     for calificacion in controller.evaluaciones:
         ids.append(calificacion.id_estudiante)
     seleccion = st.selectbox("Seleccione:", ids)
-    st.subheader("Criterios a calificar")
-    if(seleccion != '0'):
+    ir = st.button("Ir")
+    if ir:
+        st.text("Estás calificando a "+str(nombres.get(seleccion)))
+        st.subheader("Criterios a calificar")
         criterio_1 = st.slider("Desarrollo y profundidad en el tratamiento del tema:",min_value=0.0, max_value=5.0, step=0.1)
         observacion_1 = st.text_input("Observaciones:")
         criterio_2 = st.slider("Desafío académico y científico del tema:",min_value=0.0, max_value=5.0, step=0.1)
@@ -37,3 +40,5 @@ def calificar_acta(st, controller):
             controller.califiacion[seleccion].append(t_5)
             t_6 = (criterio_6, observacion_6)
             controller.califiacion[seleccion].append(t_6)
+            t_7 = (criterio_7, observacion_7)
+            controller.califiacion[seleccion].append(t_7)

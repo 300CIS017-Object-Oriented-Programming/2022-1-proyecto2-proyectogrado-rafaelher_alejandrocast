@@ -3,6 +3,7 @@ class EvaluadorController:
         super().__init__()
         # FIXME convertirlo en diccionario cuya llave sea el id del estudiante y el valor una lista de las evaluaciones que se han hecho para el mismo estudiante
         self.evaluaciones = []
+        self.nombres = {}
         self.calificaciones = {}
 
     def agregar_evaluacion(self, evaluacion_obj):
