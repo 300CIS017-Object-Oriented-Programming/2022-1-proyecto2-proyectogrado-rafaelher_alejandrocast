@@ -50,7 +50,7 @@ class MainView:
             texto = consultar_instrucciones()
             st.write(texto)
         elif self.menu_actual == "Imprimir Acta":
-            imp_acta(st,controller)
+            imp_acta(st, self.controller)
         elif self.menu_actual == "Crear Acta":
             texto1 = instrucciones()
             st.write(texto1)
