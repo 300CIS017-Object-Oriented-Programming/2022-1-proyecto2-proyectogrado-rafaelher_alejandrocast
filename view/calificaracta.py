@@ -43,3 +43,4 @@ def calificar_acta(st, controller):
             t_7 = (criterio_7, observacion_7)
             notas.append(t_7)
             controller.calificaciones[seleccion] = notas
+            st.text("Se ha calificado a "+str(nombres.nombres.get(seleccion))+" exitosamente")
