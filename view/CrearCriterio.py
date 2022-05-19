@@ -1,7 +1,3 @@
-
-
-
-
 def Nuevo_Criterio(st,controller):
     con = 0
     st.subheader("Nombre del bloque de criterios")
@@ -12,21 +8,43 @@ def Nuevo_Criterio(st,controller):
     sig = st.button("Siguiente")
     if sig:
         aux = controller.crt_aux
+        n_igual = False
         for key in aux:
             con += aux.get(key)
-        if ((con+porcentaje) > 100):
+            if(key == criterio):
+                n_igual = True
+        if n_igual:
+            st.text("No se puede añadir el criterio, ya que existe uno con el mismo nombre")
+        elif ((con+porcentaje) > 100):
             st.text("No se puede añadir, ya que supera el 100%")
             con = 0
         else:
             controller.crt_aux[criterio] = porcentaje
             st.text("Criterio añadido a "+n_bloque)
             con = 0
-        st.text(controller.crt_aux)
+
     guardar = st.button("Guardar")
+
     if guardar:
-        controller.criterios[n_bloque] = controller.crt_aux
+        aux = controller.crt_aux
+        aux2 = controller.criterios
+        n_igual = False
+        for key in aux:
+            con += aux.get(key)
+        for key in aux2:
+            if (n_bloque == key):
+                n_igual = True
+        if n_igual:
+            st.text("No se puede añadir el bloque, ya que existe uno con el mismo nombre")
+        elif ((con) < 100):
+            st.text("No se puede añadir, ya que no llega a el 100%")
+            con = 0
+        else:
+            controller.criterios[n_bloque] = controller.crt_aux
+            st.text("Bloque " + n_bloque+ "ha sido añadido correctamente")
+
     vaciar = st.button("Vaciar")
+
     if vaciar:
         controller.crt_aux.clear()
-
-
+        st.text("Bloque " + n_bloque + " sido vaciado correctamente")
