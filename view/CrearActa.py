@@ -37,6 +37,7 @@ def agregar_evaluacion(st, controller):
         st.write("Evaluacion agregada exitosamente")
         controller.nombres[evaluacion_obj.id_estudiante] = evaluacion_obj.nombre
         controller.calificaciones[evaluacion_obj.id_estudiante] = {}
+        controller.criterio_persona[evaluacion_obj.id_estudiante] = 'Actuales'
     # Retorna el controlador pq solo las colecciones se pasan en python por referencia,
     # entonces de esta manera se actualiza el controlador en la vista principal
     return controller
