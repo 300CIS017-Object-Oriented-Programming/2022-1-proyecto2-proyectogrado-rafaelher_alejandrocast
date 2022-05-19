@@ -19,9 +19,13 @@ def agregar_evaluacion(st, controller):
     evaluacion_obj.tema_proyecto = st.text_input("Tema del proyecto")
     evaluacion_obj.periodo = st.text_input("Periodo")
     evaluacion_obj.director = st.text_input("Director")
-    evaluacion_obj.co_director = st.text_input("Co-Director")
+    codirector= st.radio("¿Existe Co-Director para el proyecto?", ('Sí','No'))
+    if codirector == 'Sí':
+        evaluacion_obj.co_director = st.text_input("Co-Director")
+    else:
+        evaluacion_obj.co_director = 'NA'
     evaluacion_obj.enfasis = st.text_input("Énfasis")
-    evaluacion_obj.modalidad = st.radio("Escoja la modalidad",('Investigación', 'Aplicado'))
+    evaluacion_obj.modalidad = st.radio("Escoja la modalidad", ('Investigación', 'Aplicado'))
     evaluacion_obj.jurado1 = st.text_input("Jurado 1")
     evaluacion_obj.jurado2 = st.text_input("Jurado 2")
     # TODO
