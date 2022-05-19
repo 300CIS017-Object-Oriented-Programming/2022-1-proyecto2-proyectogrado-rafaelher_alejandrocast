@@ -14,8 +14,7 @@ class EvaluadorController:
                                        "Validez de los resultados y conclusiones": 20,
                                        "Manejo y procesamiento de la información y bibliografía": 10,
                                        "Calidad y presentación del documento escrito": 7.5,
-                                       "Presentación oral": 7.5},
-                          "Otros": {"Nada":100}}
+                                       "Presentación oral": 7.5}}
     #a
     def agregar_evaluacion(self, evaluacion_obj):
         self.evaluaciones.append(evaluacion_obj)
