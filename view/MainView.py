@@ -8,7 +8,7 @@ from view.CrearActa import instrucciones
 from view.CalificarActa import *
 from CalificarActa import calificar_acta
 from ImprimirActa import imp_acta
-from view.CrearCriterio import *
+from CrearCriterio import Nuevo_Criterio
 
 
 
@@ -64,7 +64,7 @@ class MainView:
         elif self.menu_actual == "Calificar Actas":
             calificar_acta(st, self.controller)
         elif self.menu_actual == "Crear Criterios":
-            return
+            Nuevo_Criterio(st,self.controller)
 
 # Main call
 if __name__ == "__main__":
