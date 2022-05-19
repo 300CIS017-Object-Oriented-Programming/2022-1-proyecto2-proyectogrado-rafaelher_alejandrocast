@@ -6,13 +6,8 @@ def search(index, d):
          return key
       i+=1
 
-def calificar(i, crt_actual, controller, seleccion, verificar):
-
-
 def calificar_acta(st, controller):
-
     ids = []
-    nombres = controller.nombres
     criterios = controller.criterios
     st.title("CALIFICACIÓN DE ACTAS ")
     st.subheader("Selecciona el ID del estudiante a calificar")
@@ -20,24 +15,19 @@ def calificar_acta(st, controller):
         ids.append(calificacion.id_estudiante)
     seleccion = st.selectbox("Seleccione:", ids)
     if (seleccion != None):
-        st.text("Estás calificando a "+str(nombres.get(seleccion)))
+        d_calificaciones = controller.calificaciones
+        d_calificaciones = d_calificaciones.get(seleccion)
+        st.text("Estás calificando a "+str(controller.nombres.get(seleccion)))
         st.subheader("Seleccione bloque criterios a calificar")
         seleccion_2 = st.selectbox("Selección:", criterios.keys())
         if (seleccion_2 != None):
             crt_actual = criterios.get(seleccion_2)
-            i = 0
-            st.subheader("Establezca la nota y deje sus comentarios")
-            verificar = 0
-            while (i<len(crt_actual)):
-                actual = search(i, crt_actual)
-                nota_crt = st.number_input(actual, min_value=0.0, max_value=5.0, step=0.1)
-                st.text("Observaciones:")
-                observacion = st.text_input("Observaciones para " + actual)
+            st.subheader("Seleccione el criterio a calificar")
+            seleccion_3 = st.selectbox("Selección:", crt_actual.keys())
+            if (seleccion_3 != None):
+                nota_crt = st.number_input(seleccion_3, min_value=0.0, max_value=5.0, step=0.1)
+                observacion = st.text_input("Observaciones:")
                 guardar = st.button("Guardar")
                 if guardar:
-                    notas = []
-                    tupla = (nota_crt, observacion)
-                    notas.append(tupla)
-                    i += 1
                     st.text("Se ha calificado a " + str(controller.nombres.get(seleccion)) + " exitosamente")
-                #controller.calificaciones[seleccion] = notas
+                    #controller.calificaciones[seleccion] = d_calificaciones
