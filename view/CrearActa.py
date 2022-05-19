@@ -21,7 +21,7 @@ def agregar_evaluacion(st, controller):
     evaluacion_obj.director = st.text_input("Director")
     evaluacion_obj.co_director = st.text_input("Co-Director")
     evaluacion_obj.enfasis = st.text_input("Énfasis")
-    evaluacion_obj.modalidad = st.text_input("Modalidad")
+    evaluacion_obj.modalidad = st.radio("Escoja la modalidad",('Investigación', 'Aplicado'))
     evaluacion_obj.jurado1 = st.text_input("Jurado 1")
     evaluacion_obj.jurado2 = st.text_input("Jurado 2")
     # TODO
