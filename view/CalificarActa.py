@@ -7,18 +7,7 @@ def search(index, d):
       i+=1
 
 def calificar(i, crt_actual, controller, seleccion, verificar):
-    actual = search(i, crt_actual)
-    nota_crt = st.number_input(actual, min_value=0.0, max_value=5.0, step=0.1)
-    st.text("Observaciones:")
-    observacion = st.text_input()
-    guardar = st.button("Guardar")
-    if guardar:
-        notas = []
-        tupla = (nota_crt, observacion)
-        notas.append(tupla)
-        i += 1
-        verificar += 1
-        st.text("Se ha calificado a " + str(controller.nombres.get(seleccion)) + " exitosamente")
+
 
 def calificar_acta(st, controller):
 
@@ -34,13 +23,21 @@ def calificar_acta(st, controller):
         st.text("Estás calificando a "+str(nombres.get(seleccion)))
         st.subheader("Seleccione bloque criterios a calificar")
         seleccion_2 = st.selectbox("Selección:", criterios.keys())
-        if (seleccion != None):
+        if (seleccion_2 != None):
             crt_actual = criterios.get(seleccion_2)
             i = 0
             st.subheader("Establezca la nota y deje sus comentarios")
             verificar = 0
             while (i<len(crt_actual)):
-                if (verificar == 0):
-                    calificar(i, crt_actual, controller, seleccion, verificar)
-                verificar += 1
+                actual = search(i, crt_actual)
+                nota_crt = st.number_input(actual, min_value=0.0, max_value=5.0, step=0.1)
+                st.text("Observaciones:")
+                observacion = st.text_input("Observaciones para " + actual)
+                guardar = st.button("Guardar")
+                if guardar:
+                    notas = []
+                    tupla = (nota_crt, observacion)
+                    notas.append(tupla)
+                    i += 1
+                    st.text("Se ha calificado a " + str(controller.nombres.get(seleccion)) + " exitosamente")
                 #controller.calificaciones[seleccion] = notas
