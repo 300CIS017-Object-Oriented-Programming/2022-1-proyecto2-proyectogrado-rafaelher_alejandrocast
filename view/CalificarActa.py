@@ -15,8 +15,7 @@ def calificar_acta(st, controller):
         ids.append(calificacion.id_estudiante)
     seleccion = st.selectbox("Seleccione:", ids)
     if (seleccion != None):
-        d_calificaciones = controller.calificaciones
-        d_calificaciones = d_calificaciones.get(seleccion)
+        d_calificaciones = {}
         st.text("Estás calificando a "+str(controller.nombres.get(seleccion)))
         st.subheader("Seleccione bloque criterios a calificar")
         seleccion_2 = st.selectbox("Selección:", criterios.keys())
@@ -30,4 +29,6 @@ def calificar_acta(st, controller):
                 guardar = st.button("Guardar")
                 if guardar:
                     st.text("Se ha calificado a " + str(controller.nombres.get(seleccion)) + " exitosamente")
-                    #controller.calificaciones[seleccion] = d_calificaciones
+                    tupla = (nota_crt, observacion)
+                    d_calificaciones[seleccion_3] = tupla
+                    controller.calificaciones[seleccion].setdefault(seleccion_3, tupla)
