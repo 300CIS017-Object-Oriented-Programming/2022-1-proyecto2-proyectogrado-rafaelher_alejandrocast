@@ -8,6 +8,7 @@ from view.CrearActa import instrucciones
 from view.CalificarActa import *
 from CalificarActa import calificar_acta
 from ImprimirActa import imp_acta
+from view.CrearCriterio import *
 
 
 
@@ -42,8 +43,8 @@ class MainView:
         with st.sidebar:
             st.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png', '',
                      300, )
-            self.menu_actual = option_menu("Menu", ["Inicio", 'Imprimir Acta', 'Crear Acta', 'Listar Actas', 'Calificar Actas'],
-                                        icons=['house', 'bi bi-printer', 'bi bi-file-earmark-plus-fill','archive'], menu_icon="bi bi-list", default_index=0, orientation="horizontal")
+            self.menu_actual = option_menu("Menu", ["Inicio", 'Imprimir Acta', 'Crear Acta', 'Listar Actas', 'Calificar Actas','Crear Criterios'],
+                                        icons=['house', 'bi bi-printer', 'bi bi-file-earmark-plus-fill','archive','bi bi-clipboard-check','bi bi-node-plus'], menu_icon="bi bi-list", default_index=0, orientation="horizontal")
 
     def controlar_menu(self):
         st.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png', '', 300, )
@@ -62,6 +63,8 @@ class MainView:
             #exp_acta(st, self.controller)
         elif self.menu_actual == "Calificar Actas":
             calificar_acta(st, self.controller)
+        elif self.menu_actual == "Crear Criterios":
+            return
 
 # Main call
 if __name__ == "__main__":
