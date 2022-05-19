@@ -1,5 +1,6 @@
 def Nuevo_Criterio(st,controller):
     con = 0
+    aux3 = {}
     st.subheader("Nombre del bloque de criterios")
     n_bloque = st.text_input("Nombre del bloque de criterios")
     st.subheader("Criterio y valor porcentual")
@@ -40,11 +41,18 @@ def Nuevo_Criterio(st,controller):
             st.text("No se puede añadir, ya que no llega a el 100%")
             con = 0
         else:
-            controller.criterios[n_bloque] = controller.crt_aux
+            aux3 = controller.crt_aux.copy()
+            controller.criterios[n_bloque] = aux3
             st.text("Bloque " + n_bloque+ "ha sido añadido correctamente")
+            controller.crt_aux.clear()
 
     vaciar = st.button("Vaciar")
 
     if vaciar:
         controller.crt_aux.clear()
         st.text("Bloque " + n_bloque + " sido vaciado correctamente")
+
+    st.subheader("El bloque "+n_bloque+" quedaría de la siguiente manera")
+    aux = controller.crt_aux
+    for key in aux:
+        st.text(key+" - "+str(aux.get(key))+"%")
