@@ -22,7 +22,11 @@ def Nuevo_Criterio(st,controller):
             st.text("Criterio añadido a "+n_bloque)
             con = 0
         st.text(controller.crt_aux)
-    st.button("Guardar")
-    st.button("Vaciar")
+    guardar = st.button("Guardar")
+    if guardar:
+        controller.criterios[n_bloque] = controller.crt_aux
+    vaciar = st.button("Vaciar")
+    if vaciar:
+        controller.crt_aux.clear()
 
 
