@@ -53,6 +53,9 @@ def search(clave, d):
 def listar_evaluacion(st, controller):
     ids = []
     nombres = controller.nombres
+    criterios = controller.criterios
+    notas = controller.calificaciones
+    dat = criterios["Actuales"]
     st.title("LISTA DE ACTAS ")
     st.subheader("Selecciona el ID del estudiante a listar")
     for calificacion in controller.evaluaciones:
@@ -61,11 +64,14 @@ def listar_evaluacion(st, controller):
 
     """Itera los elementos de evaluacion agregados y los muestra"""
     i = 1
+    e = 0
     index = search(seleccion, nombres)
+
     contador = 0
     for evaluacion in controller.evaluaciones:
         if (contador == index):
             st.title("ACTA NÚMERO "+str(i))
+            notas = notas[evaluacion.id_estudiante]
 
             st.subheader("Nombre")
             st.write(evaluacion.nombre)
@@ -96,7 +102,19 @@ def listar_evaluacion(st, controller):
         #with col1:
             st.subheader("Jurado 2")
             st.write(evaluacion.jurado2)
+
+            for key in dat:
+                st.subheader(key)
+                dat2 = notas.get(key)
+                if (dat2 == None):
+                    dat2 = 'sin nota'
+                    st.subheader(dat2)
+                else:
+                    st.subheader((dat2[0] + dat2[2])/2)
+
+            #st.write(criterios.nota_crt1)
         i += 1
+        e += 1
         contador += 1
 
 """

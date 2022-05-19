@@ -56,6 +56,7 @@ def imp_acta(st, controller):
             pdf.cell(100, 10, txt=str(posicion.jurado1), ln=1, align='L')
             pdf.cell(40, 10, txt='Jurado 2:  ', ln=0, align='L')
             pdf.cell(100, 10, txt=str(posicion.jurado2), ln=1, align='L')
+
         contador += 1
     """
     pdf.add_page()
