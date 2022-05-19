@@ -24,11 +24,17 @@ def calificar_acta(st, controller):
             st.subheader("Seleccione el criterio a calificar")
             seleccion_3 = st.selectbox("Selección:", crt_actual.keys())
             if (seleccion_3 != None):
-                nota_crt = st.number_input(seleccion_3, min_value=0.0, max_value=5.0, step=0.1)
-                observacion = st.text_input("Observaciones:")
+                st.text(seleccion_3)
+                nota_crt1 = st.number_input("Calificación jurado 1", min_value=0.0, max_value=5.0, step=0.1)
+                observacion1 = st.text_input("Observación jurado 1:")
+                nota_crt2 = st.number_input("Calificación jurado 2", min_value=0.0, max_value=5.0, step=0.1)
+                observacion2 = st.text_input("Observación jurado 2:")
+                observaciong = st.text_input("Observación general:")
                 guardar = st.button("Guardar")
                 if guardar:
                     st.text("Se ha calificado a " + str(controller.nombres.get(seleccion)) + " exitosamente")
-                    tupla = (nota_crt, observacion)
+                    tupla = (nota_crt1, observacion1, nota_crt2, observacion2, observaciong)
                     d_calificaciones[seleccion_3] = tupla
                     controller.calificaciones[seleccion].setdefault(seleccion_3, tupla)
+                    #t = controller.calificaciones[seleccion]
+                    #st.text(t)
