@@ -37,8 +37,8 @@ def imp_acta(st, controller):
     contador = 0
     for posicion in controller.evaluaciones:
         if(contador == index):
-            pdf.cell(63, 10, txt='Trabajo de grado denominado: ', ln=0, align='L')
-            pdf.cell(80, 10, txt=str(posicion.tema_proyecto), ln=1, align='L')
+            pdf.cell(63, 10, txt='Trabajo de grado denominado: "', ln=0, align='L')
+            pdf.cell(80, 10, txt=' "'+str(posicion.tema_proyecto)+'"', ln=1, align='L')
             pdf.cell(40, 10, txt='Autor: ', ln=0, align='L')
             pdf.cell(100, 10, txt=str(posicion.nombre), ln=0, align='L')
             pdf.cell(50, 10, txt='ID: '+str(posicion.id_estudiante), ln=1, align='L')
