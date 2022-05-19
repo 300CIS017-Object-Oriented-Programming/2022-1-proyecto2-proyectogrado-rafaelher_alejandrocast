@@ -6,6 +6,7 @@ class EvaluadorController:
         self.nombres = {}
         self.criterio_persona = {}
         self.calificaciones = {}
+        self.crt_aux = {}
         self.criterios = {"Actuales": {"Desarrollo y profundidad en el tratamiento del tema": 20,
                                        "Desafío académico y científico del tema": 15,
                                        "Cumplimiento de los objetivos propuestos": 10,
