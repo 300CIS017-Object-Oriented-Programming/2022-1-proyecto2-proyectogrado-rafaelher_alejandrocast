@@ -88,17 +88,32 @@ def imp_acta(st, controller):
                 pdf.set_font('Arial', "B", size=12)
                 pdf.cell(100, 10, txt=str(str(numeral)+'. '+key_c), ln=1, align='L')
                 numeral += 1
+                pond = criterio.get(key_c)
                 for key_n in notas:
                     pdf.set_font('Arial', size=13)
                     if (key_c == key_n):
                         tupla = notas.get(key_n)
                         nota_t = ((tupla[0] + tupla[2]) / 2)
+                        jur1 = tupla[1]
+                        jur2 = tupla[3]
+                        obser = tupla[4]
                         veri = True
-                        pdf.cell(100, 10, txt=str('Calificación parcial: '+ str(nota_t)), ln=1, align='L')
-                        pdf.set_font('Arial', size=13)
+                        pdf.set_font('Arial', size=11)
+                        pdf.cell(150, 10, txt=str('Calificación parcial: '+ str(nota_t)), ln=0, align='L')
+                        pdf.cell(100, 10, txt=str('Ponderacion: ' + str(pond)+'%'), ln=1, align='L')
+                        pdf.cell(100, 10, txt=str('Observaciones: ' + obser), ln=1, align='L')
+                        pdf.cell(200, 10,txt="_________________________________________________________________________________________",ln=1, align='L')
+                        pdf.cell(200, 10,txt="_________________________________________________________________________________________",ln=1, align='L')
+
+
+                        pdf.set_font('Arial', size=11)
                 if (veri == False):
-                    pdf.set_font('Arial', size=13)
-                    pdf.cell(100, 10, txt=str("Pendiente."), ln=1, align='L')
+                    pdf.set_font('Arial', size=11)
+                    pdf.cell(150, 10, txt=str('Calificación parcial: Pendiente' ), ln=0, align='L')
+                    pdf.cell(100, 10, txt=str('Ponderacion: ' + str(pond)+'%'), ln=1, align='L')
+                    pdf.cell(100, 10, txt=str('Observaciones: Pendiente' ), ln=1, align='L')
+                    pdf.cell(200, 10,txt="_________________________________________________________________________________________",ln=1, align='L')
+                    pdf.cell(200, 10,txt="_________________________________________________________________________________________",ln=1, align='L')
 
         contador += 1
     """
