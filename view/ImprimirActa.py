@@ -68,6 +68,7 @@ def imp_acta(st, controller):
     contador = 0
     for posicion in controller.evaluaciones:
         if(contador == index):
+            obs_ad = st.text_input("Observaciones adicionales para "+str(nombres[posicion.id_estudiante])+":")
             pdf.cell(63, 10, txt='Trabajo de grado denominado: "', ln=0, align='L')
             pdf.cell(80, 10, txt=' "'+str(posicion.tema_proyecto)+'"', ln=1, align='L')
             pdf.cell(40, 10, txt='Autor: ', ln=0, align='L')
@@ -136,6 +137,8 @@ def imp_acta(st, controller):
             pdf.cell(100, 3, txt=nota_letras, ln=1, align='L')
             pdf.cell(150, 5, txt="Números", ln=0, align='L')
             pdf.cell(100, 5, txt="Letras", ln=1, align='L')
+            pdf.set_font('Arial', size=12)
+            pdf.cell(100, 10, txt=str('Observaciones adicionales: '+obs_ad), ln=1, align='L')
         contador += 1
     """
     pdf.add_page()
