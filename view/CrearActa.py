@@ -111,7 +111,7 @@ def listar_evaluacion(st, controller):
                     dat2 = 'Por favor Ingresar el valor de la calificación.'
                     st.subheader(dat2)
                 else:
-                    st.subheader((dat2[0] + dat2[2])/2)
+                    st.subheader((dat2[0] + dat2[1])/2)
             st.subheader("Calificación general")
             st.text(calificacion_general(evaluacion.id_estudiante, st, controller))
 

@@ -26,7 +26,7 @@ def calificacion_general(id, st, controller):
         for key_n in notas:
             if(key_c == key_n):
                 tupla = notas.get(key_n)
-                nota_t = ((tupla[0] + tupla[2])/2)
+                nota_t = ((tupla[0] + tupla[1])/2)
                 porcentaje = (criterio.get(key_c)/100)
                 acum += nota_t*porcentaje
     acum = float(acum.__round__(1))
@@ -106,10 +106,9 @@ def imp_acta(st, controller):
                     pdf.set_font('Arial', size=13)
                     if (key_c == key_n):
                         tupla = notas.get(key_n)
-                        nota_t = ((tupla[0] + tupla[2]) / 2)
-                        jur1 = tupla[1]
-                        jur2 = tupla[3]
-                        obser = tupla[4]
+                        nota_t = ((tupla[0] + tupla[1]) / 2)
+                        nota_t = nota_t.__round__(1)
+                        obser = tupla[2]
                         veri = True
                         pdf.set_font('Arial', size=11)
                         pdf.cell(150, 10, txt=str('Calificación parcial: '+ str(nota_t)), ln=0, align='L')

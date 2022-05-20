@@ -43,7 +43,7 @@ def Nuevo_Criterio(st,controller):
         else:
             aux3 = controller.crt_aux.copy()
             controller.criterios[n_bloque] = aux3
-            st.text("Bloque " + n_bloque+ "ha sido añadido correctamente")
+            st.text("Bloque " + n_bloque+ " ha sido añadido correctamente")
             controller.crt_aux.clear()
 
     vaciar = st.button("Vaciar")

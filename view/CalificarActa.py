@@ -27,9 +27,7 @@ def calificar_acta(st, controller):
             if (seleccion_3 != None):
                 st.text(seleccion_3)
                 nota_crt1 = st.number_input("Calificación jurado 1", min_value=0.0, max_value=5.0, step=0.1)
-                observacion1 = st.text_input("Observación jurado 1:")
                 nota_crt2 = st.number_input("Calificación jurado 2", min_value=0.0, max_value=5.0, step=0.1)
-                observacion2 = st.text_input("Observación jurado 2:")
                 observaciong = st.text_input("Observación general:")
                 guardar = st.button("Guardar")
                 if guardar:
@@ -39,7 +37,7 @@ def calificar_acta(st, controller):
                         controller.calificaciones[seleccion].clear()
                         controller.criterio_persona[seleccion] = seleccion_2
                     st.text("Se ha calificado a " + str(controller.nombres.get(seleccion)) + " exitosamente")
-                    tupla = (nota_crt1, observacion1, nota_crt2, observacion2, observaciong)
+                    tupla = (nota_crt1, nota_crt2, observaciong)
                     d_calificaciones[seleccion_3] = tupla
                     controller.calificaciones[seleccion].setdefault(seleccion_3, tupla)
                     t = controller.calificaciones[seleccion]
