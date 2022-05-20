@@ -108,7 +108,7 @@ def listar_evaluacion(st, controller):
                 st.subheader(key)
                 dat2 = notas.get(key)
                 if (dat2 == None):
-                    dat2 = 'sin nota'
+                    dat2 = 'Por favor Ingresar el valor de la calificación.'
                     st.subheader(dat2)
                 else:
                     st.subheader((dat2[0] + dat2[2])/2)

@@ -26,6 +26,7 @@ def calificacion_general(id, st, controller):
 
 def imp_acta(st, controller):
     from datetime import datetime
+    acum = 0
     numact = 1
     st.title('Generar PDF')
     pdf = FPDF()
@@ -73,6 +74,31 @@ def imp_acta(st, controller):
             pdf.cell(100, 10, txt=str(posicion.jurado1), ln=1, align='L')
             pdf.cell(40, 10, txt='Jurado 2:  ', ln=0, align='L')
             pdf.cell(100, 10, txt=str(posicion.jurado2), ln=1, align='L')
+            pdf.set_font('Arial', size=11)
+            pdf.cell(40, 10, txt='En atención al desarrollo de este Trabajo de Grado y al documento y sustentación que presentó el(la) autor(a),', ln=1, align='L')
+            pdf.cell(40, 10, txt='os Jurados damos las siguientes calificaciones parciales y observaciones (los criterios a evaluar y sus', ln=1, align='L')
+            pdf.cell(40, 10, txt='ponderaciones se estipulan en el artículo 7.1 de las Directrices para Trabajo de Grado de Maestría):', ln=1, align='L')
+
+            criterio = controller.criterio_persona[posicion.id_estudiante]
+            criterio = controller.criterios[criterio]
+            notas = controller.calificaciones[posicion.id_estudiante]
+            numeral = 1
+            for key_c in criterio:
+                veri = False
+                pdf.set_font('Arial', "B", size=12)
+                pdf.cell(100, 10, txt=str(str(numeral)+'. '+key_c), ln=1, align='L')
+                numeral += 1
+                for key_n in notas:
+                    pdf.set_font('Arial', size=13)
+                    if (key_c == key_n):
+                        tupla = notas.get(key_n)
+                        nota_t = ((tupla[0] + tupla[2]) / 2)
+                        veri = True
+                        pdf.cell(100, 10, txt=str(nota_t), ln=1, align='L')
+                        pdf.set_font('Arial', size=13)
+                if (veri == False):
+                    pdf.set_font('Arial', size=13)
+                    pdf.cell(100, 10, txt=str("Por favor ingresar una calificacion."), ln=1, align='L')
 
         contador += 1
     """
