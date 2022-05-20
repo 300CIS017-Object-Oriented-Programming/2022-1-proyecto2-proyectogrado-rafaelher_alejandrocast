@@ -21,21 +21,6 @@ def calificacion_general(id, st, controller):
                 acum += nota_t*porcentaje
     return acum
 
-
-def header(st,controller,pdf):
-    from datetime import datetime
-    año = datetime.today().strftime('%Y')
-    dia = datetime.today().strftime('%Y-%m-%d')
-    pdf.set_font('Arial', "B", size=17)
-    pdf.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png',15 , 10, 40)
-    pdf.cell(200, 10, txt='Facultad de Ingeniería', ln=1, align='C')
-    pdf.cell(200, 10, txt='Maestría en Ingeniería', ln=2, align='C')
-    pdf.set_font('Arial', "B", size=13)
-    pdf.cell(150, 10, txt='ACTA: '+"11"+'-'+año, ln=0, align='L')
-    pdf.cell(16, 10, txt='Fecha: ', ln=0, align='L')
-    pdf.cell(0, 10, txt=dia, ln=1, align='L')
-
-
 def imp_acta(st, controller):
     from datetime import datetime
     st.title('Generar PDF')
@@ -47,9 +32,23 @@ def imp_acta(st, controller):
     for calificacion in controller.evaluaciones:
         ids.append(calificacion.id_estudiante)
     seleccion = st.selectbox("Seleccione:", ids)
-    pdf = FPDF()
+    class PDF(FPDF):
+        def header(self):
+            from datetime import datetime
+            año = datetime.today().strftime('%Y')
+            dia = datetime.today().strftime('%Y-%m-%d')
+            pdf.set_font('Arial', "B", size=17)
+            pdf.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png', 15,
+                      10, 40)
+            pdf.cell(200, 10, txt='Facultad de Ingeniería', ln=1, align='C')
+            pdf.cell(200, 10, txt='Maestría en Ingeniería', ln=2, align='C')
+            pdf.set_font('Arial', "B", size=13)
+            pdf.cell(150, 10, txt='ACTA: ' + str(numact) + '-' + año, ln=0, align='L')
+            pdf.cell(16, 10, txt='Fecha: ', ln=0, align='L')
+            pdf.cell(0, 10, txt=dia, ln=1, align='L')
+    pdf = PDF()
     pdf.add_page()
-    header(st, controller,pdf)
+    pdf.alias_nb_pages()
     pdf.set_font('Arial', size=13)
     pdf.set_font('Arial', "B", size=13)
     pdf.cell(200, 10, txt='ACTA DE EVALUACIÓN DE TRABAJO DE GRADO', ln=1, align='C')
@@ -79,7 +78,7 @@ def imp_acta(st, controller):
             pdf.cell(100, 10, txt=str(posicion.jurado2), ln=1, align='L')
             pdf.set_font('Arial', size=11)
             pdf.cell(40, 10, txt='En atención al desarrollo de este Trabajo de Grado y al documento y sustentación que presentó el(la) autor(a),', ln=1, align='L')
-            pdf.cell(40, 10, txt='os Jurados damos las siguientes calificaciones parciales y observaciones (los criterios a evaluar y sus', ln=1, align='L')
+            pdf.cell(40, 10, txt='los Jurados damos las siguientes calificaciones parciales y observaciones (los criterios a evaluar y sus', ln=1, align='L')
             pdf.cell(40, 10, txt='ponderaciones se estipulan en el artículo 7.1 de las Directrices para Trabajo de Grado de Maestría):', ln=1, align='L')
 
             criterio = controller.criterio_persona[posicion.id_estudiante]
