@@ -22,23 +22,10 @@ def calificacion_general(id, st, controller):
     return acum
 
 
-
-
-def imp_acta(st, controller):
+def header(st,controller,pdf):
     from datetime import datetime
-    acum = 0
-    numact = 1
-    st.title('Generar PDF')
-    pdf = FPDF()
-    pdf.add_page()
-    ids = []
-    nombres = controller.nombres
-    st.subheader("Selecciona el ID del estudiante a Imprimir")
-    for calificacion in controller.evaluaciones:
-        ids.append(calificacion.id_estudiante)
-    seleccion = st.selectbox("Seleccione:", ids)
-    dia = datetime.today().strftime('%Y-%m-%d')
     año = datetime.today().strftime('%Y')
+    dia = datetime.today().strftime('%Y-%m-%d')
     pdf.set_font('Arial', "B", size=17)
     pdf.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png',15 , 10, 40)
     pdf.cell(200, 10, txt='Facultad de Ingeniería', ln=1, align='C')
@@ -46,8 +33,24 @@ def imp_acta(st, controller):
     pdf.set_font('Arial', "B", size=13)
     pdf.cell(150, 10, txt='ACTA: '+"11"+'-'+año, ln=0, align='L')
     pdf.cell(16, 10, txt='Fecha: ', ln=0, align='L')
-    pdf.set_font('Arial', size=13)
     pdf.cell(0, 10, txt=dia, ln=1, align='L')
+
+
+def imp_acta(st, controller):
+    from datetime import datetime
+    st.title('Generar PDF')
+    acum = 0
+    numact = 1
+    ids = []
+    nombres = controller.nombres
+    st.subheader("Selecciona el ID del estudiante a Imprimir")
+    for calificacion in controller.evaluaciones:
+        ids.append(calificacion.id_estudiante)
+    seleccion = st.selectbox("Seleccione:", ids)
+    pdf = FPDF()
+    pdf.add_page()
+    header(st, controller,pdf)
+    pdf.set_font('Arial', size=13)
     pdf.set_font('Arial', "B", size=13)
     pdf.cell(200, 10, txt='ACTA DE EVALUACIÓN DE TRABAJO DE GRADO', ln=1, align='C')
     pdf.set_font('Arial', size=13)
@@ -114,7 +117,6 @@ def imp_acta(st, controller):
                     pdf.cell(100, 10, txt=str('Observaciones: Pendiente' ), ln=1, align='L')
                     pdf.cell(200, 10,txt="_________________________________________________________________________________________",ln=1, align='L')
                     pdf.cell(200, 10,txt="_________________________________________________________________________________________",ln=1, align='L')
-
         contador += 1
     """
     pdf.add_page()
