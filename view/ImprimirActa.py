@@ -7,6 +7,16 @@ def search(clave, d):
          return i
       i+=1
 
+def convertir(ent):
+   nota = str(ent)
+   letrasM = ['Cero', 'Uno', 'Dos', 'Tres', 'Cuatro', 'Cinco']
+   letrasm = ['cero', 'uno', 'dos', 'tres', 'cuatro',
+              'cinco', 'seis', 'siete', 'ocho', 'nueve']
+   p_caracter = letrasM[int(nota[0])]
+   s_caracter = letrasm[int(nota[2])]
+   cad = p_caracter+" punto "+s_caracter
+   return cad
+
 def calificacion_general(id, st, controller):
     acum = 0
     criterio = controller.criterio_persona[id]
@@ -19,6 +29,7 @@ def calificacion_general(id, st, controller):
                 nota_t = ((tupla[0] + tupla[2])/2)
                 porcentaje = (criterio.get(key_c)/100)
                 acum += nota_t*porcentaje
+    acum = float(acum.__round__(1))
     return acum
 
 def imp_acta(st, controller):
@@ -116,6 +127,16 @@ def imp_acta(st, controller):
                     pdf.cell(100, 10, txt=str('Observaciones: Pendiente' ), ln=1, align='L')
                     pdf.cell(200, 10,txt="_________________________________________________________________________________________",ln=1, align='L')
                     pdf.cell(200, 10,txt="_________________________________________________________________________________________",ln=1, align='L')
+            nota_final = calificacion_general(posicion.id_estudiante, st, controller)
+            pdf.set_font('Arial', "B", size=11)
+            pdf.cell(40, 7, txt="Como resultado de estas calificaciones parciales y sus ponderaciones, la calificación del Trabajo de", ln=1, align='L')
+            pdf.cell(40, 3, txt="Grado es: "+str(nota_final), ln=1, align='L')
+            nota_letras = convertir(str(nota_final))
+            pdf.cell(100, 7, txt='', ln=1, align='L')
+            pdf.cell(150, 3, txt=str(nota_final), ln=0, align='L')
+            pdf.cell(100, 3, txt=nota_letras, ln=1, align='L')
+            pdf.cell(150, 5, txt="Números", ln=0, align='L')
+            pdf.cell(100, 5, txt="Letras", ln=1, align='L')
         contador += 1
     """
     pdf.add_page()
