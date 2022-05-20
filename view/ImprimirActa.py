@@ -64,6 +64,8 @@ def imp_acta(st, controller):
             pdf.cell(0, 10, txt=dia, ln=1, align='L')
     pdf = PDF()
     pdf.add_page()
+    pdf.auto_page_break
+    pdf.set_right_margin(10)
     pdf.alias_nb_pages()
     pdf.set_font('Arial', size=13)
     pdf.set_font('Arial', "B", size=13)
@@ -74,9 +76,8 @@ def imp_acta(st, controller):
     for posicion in controller.evaluaciones:
         if(contador == index):
             obs_ad = st.text_input("Observaciones adicionales para "+str(nombres[posicion.id_estudiante])+":")
-            pdf.cell(63, 10, txt='Trabajo de grado denominado: "', ln=0, align='L')
-            pdf.cell(80, 10, txt=' "'+str(posicion.tema_proyecto)+'"', ln=1, align='L')
-            pdf.cell(40, 10, txt='Autor: ', ln=0, align='L')
+            pdf.multi_cell(0, 7, txt='Trabajo de grado denominado: "'+posicion.tema_proyecto+'"', align='L', border=1)
+            pdf.cell(40, 10, txt='Autor: ', ln=0, align='L', border=1)
             pdf.cell(100, 10, txt=str(posicion.nombre), ln=0, align='L')
             pdf.cell(50, 10, txt='ID: '+str(posicion.id_estudiante), ln=1, align='L')
             pdf.cell(40, 10, txt='Periodo: ', ln=0, align='L')
