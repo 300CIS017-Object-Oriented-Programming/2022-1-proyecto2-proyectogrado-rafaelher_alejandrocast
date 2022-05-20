@@ -12,7 +12,6 @@ from CrearCriterio import Nuevo_Criterio
 from ListarCriterios import Listar_Criterios
 
 
-
 class MainView:
     def __init__(self) -> None:
         super().__init__()
@@ -35,8 +34,7 @@ class MainView:
 
     def _dibujar_layout(self):
         # Set page title, icon, layout wide (more used space in central area) and sidebar initial state
-        st.set_page_config(page_title="Sistema de gestion de notas", page_icon='https://www.javerianacali.edu.co/sites/default/files/favicon_0.ico', layout="wide",
-                           initial_sidebar_state="expanded")
+        st.set_page_config(page_title="Sistema de gestion de notas", page_icon='https://www.javerianacali.edu.co/sites/default/files/favicon_0.ico', layout="wide", initial_sidebar_state="collapsed", menu_items=None)
         # Defines the number of available columns del area principal
         self.col1, self.col2, self.col3, self.col4 = st.columns([1, 1, 1, 1])
 
@@ -45,7 +43,7 @@ class MainView:
             st.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png', '',
                      300, )
             self.menu_actual = option_menu("Menu", ["Inicio", 'Imprimir Acta', 'Crear Acta', 'Listar Actas', 'Calificar Actas','Crear Criterios','Listar Criterios'],
-                                        icons=['house', 'bi bi-printer', 'bi bi-file-earmark-plus-fill','archive','bi bi-clipboard-check','bi bi-node-plus','archive'], menu_icon="bi bi-list", default_index=0, orientation="horizontal")
+                                        icons=['house', 'bi bi-printer', 'bi bi-file-earmark-plus-fill','archive','bi bi-clipboard-check','bi bi-node-plus','archive'], menu_icon="bi bi-view-list", default_index=0, orientation="horizontal")
 
     def controlar_menu(self):
         st.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png', '', 300, )
