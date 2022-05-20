@@ -139,6 +139,11 @@ def imp_acta(st, controller):
             pdf.cell(100, 5, txt="Letras", ln=1, align='L')
             pdf.set_font('Arial', size=12)
             pdf.cell(100, 10, txt=str('Observaciones adicionales: '+obs_ad), ln=1, align='L')
+            pdf.cell(200, 10, txt="_________________________________________________________________________________________",ln=1, align='L')
+            pdf.cell(200, 10, txt="_________________________________________________________________________________________",ln=1, align='L')
+            pdf.cell(100, 10, txt=str('La calificación final queda sujeta a que se implementen las siguientes correciones: '), ln=1, align='L')
+            pdf.cell(200, 10, txt="_________________________________________________________________________________________",ln=1, align='L')
+            pdf.cell(200, 10, txt="_________________________________________________________________________________________",ln=1, align='L')
         contador += 1
     """
     pdf.add_page()
