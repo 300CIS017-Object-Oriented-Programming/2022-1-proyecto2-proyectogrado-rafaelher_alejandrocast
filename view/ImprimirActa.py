@@ -37,6 +37,27 @@ def imp_lineas(pdf):
     pdf.cell(200, 10, txt="_____________________________________________________________________________________", ln=1,align='L')
     pdf.cell(200, 10, txt="_____________________________________________________________________________________", ln=1,align='L')
 
+def imp_datos(pdf, posicion):
+    pdf.set_font('Arial', size=12)
+    pdf.multi_cell(0, 7, txt='Trabajo de grado denominado: "' + posicion.tema_proyecto + '"', align='L', border=0, ln=1)
+    pdf.cell(40, 10, txt='Autor: ', ln=0, align='L', border=0)
+    pdf.cell(100, 10, txt=str(posicion.nombre), ln=0, align='L')
+    pdf.cell(50, 10, txt='ID: ' + str(posicion.id_estudiante), ln=1, align='L')
+    pdf.cell(40, 10, txt='Periodo: ', ln=0, align='L')
+    pdf.cell(100, 10, txt=str(posicion.periodo), ln=1, align='L')
+    pdf.cell(40, 10, txt='Director: ', ln=0, align='L')
+    pdf.cell(100, 10, txt=str(posicion.director), ln=1, align='L')
+    pdf.cell(40, 10, txt='Co-Director: ', ln=0, align='L')
+    pdf.cell(100, 10, txt=str(posicion.co_director), ln=1, align='L')
+    pdf.cell(40, 10, txt='Énfasis en:  ', ln=0, align='L')
+    pdf.cell(100, 10, txt=str(posicion.enfasis), ln=1, align='L')
+    pdf.cell(40, 10, txt='Modalidad:  ', ln=0, align='L')
+    pdf.cell(100, 10, txt=str(posicion.modalidad), ln=1, align='L')
+    pdf.cell(40, 10, txt='Jurado 1:  ', ln=0, align='L')
+    pdf.cell(100, 10, txt=str(posicion.jurado1), ln=1, align='L')
+    pdf.cell(40, 10, txt='Jurado 2:  ', ln=0, align='L')
+    pdf.cell(100, 10, txt=str(posicion.jurado2), ln=1, align='L')
+
 def imp_acta(st, controller):
     from datetime import datetime
     st.title('Generar PDF')
@@ -65,7 +86,8 @@ def imp_acta(st, controller):
     pdf = PDF()
     pdf.add_page()
     pdf.auto_page_break
-    pdf.set_right_margin(10)
+    pdf.set_right_margin(3)
+    pdf.set_top_margin(15)
     pdf.alias_nb_pages()
     pdf.set_font('Arial', size=13)
     pdf.set_font('Arial', "B", size=13)
@@ -76,29 +98,12 @@ def imp_acta(st, controller):
     for posicion in controller.evaluaciones:
         if(contador == index):
             obs_ad = st.text_input("Observaciones adicionales para "+str(nombres[posicion.id_estudiante])+":")
-            pdf.multi_cell(0, 7, txt='Trabajo de grado denominado: "'+posicion.tema_proyecto+'"', align='L', border=1)
-            pdf.cell(40, 10, txt='Autor: ', ln=0, align='L', border=1)
-            pdf.cell(100, 10, txt=str(posicion.nombre), ln=0, align='L')
-            pdf.cell(50, 10, txt='ID: '+str(posicion.id_estudiante), ln=1, align='L')
-            pdf.cell(40, 10, txt='Periodo: ', ln=0, align='L')
-            pdf.cell(100, 10, txt=str(posicion.periodo), ln=1, align='L')
-            pdf.cell(40, 10, txt='Director: ', ln=0, align='L')
-            pdf.cell(100, 10, txt=str(posicion.director), ln=1, align='L')
-            pdf.cell(40, 10, txt='Co-Director: ', ln=0, align='L')
-            pdf.cell(100, 10, txt=str(posicion.co_director), ln=1, align='L')
-            pdf.cell(40, 10, txt='Énfasis en:  ', ln=0, align='L')
-            pdf.cell(100, 10, txt=str(posicion.enfasis), ln=1, align='L')
-            pdf.cell(40, 10, txt='Modalidad:  ', ln=0, align='L')
-            pdf.cell(100, 10, txt=str(posicion.modalidad), ln=1, align='L')
-            pdf.cell(40, 10, txt='Jurado 1:  ', ln=0, align='L')
-            pdf.cell(100, 10, txt=str(posicion.jurado1), ln=1, align='L')
-            pdf.cell(40, 10, txt='Jurado 2:  ', ln=0, align='L')
-            pdf.cell(100, 10, txt=str(posicion.jurado2), ln=1, align='L')
-            pdf.set_font('Arial', size=11)
-            pdf.cell(40, 10, txt='En atención al desarrollo de este Trabajo de Grado y al documento y sustentación que presentó el(la) autor(a),', ln=1, align='L')
-            pdf.cell(40, 10, txt='los Jurados damos las siguientes calificaciones parciales y observaciones (los criterios a evaluar y sus', ln=1, align='L')
-            pdf.cell(40, 10, txt='ponderaciones se estipulan en el artículo 7.1 de las Directrices para Trabajo de Grado de Maestría):', ln=1, align='L')
-
+            imp_datos(pdf, posicion)
+            pdf.set_font('Arial', size=12)
+            text1 = 'En atención al desarrollo de este Trabajo de Grado y al documento y sustentación que presentó el(la) autor(a), ' \
+                    'los Jurados damos las siguientes calificaciones parciales y observaciones (los criterios a evaluar y sus ' \
+                    'ponderaciones se estipulan en el artículo 7.1 de las Directrices para Trabajo de Grado de Maestría)'
+            pdf.multi_cell(0, 7, txt = text1, ln=1)
             criterio = controller.criterio_persona[posicion.id_estudiante]
             criterio = controller.criterios[criterio]
             notas = controller.calificaciones[posicion.id_estudiante]
@@ -146,18 +151,42 @@ def imp_acta(st, controller):
             pdf.cell(100, 10, txt=str('La calificación final queda sujeta a que se implementen las siguientes correciones: '), ln=1, align='L')
             imp_lineas(pdf)
         contador += 1
-    """
-    pdf.add_page()
-    dia = datetime.today().strftime('%Y-%m-%d')
-    año = datetime.today().strftime('%Y')
-    pdf.set_font('Arial', size=13)
-    pdf.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png',15 , 10, 40)
-    pdf.cell(200, 10, txt='Facultad de Ingeniería', ln=1, align='C')
-    pdf.cell(200, 10, txt='Maestría en Ingeniería', ln=1, align='C')
-    pdf.cell(100, 10, txt='ACTA: '+"11"+'-'+año, ln=0, align='L')
-    pdf.cell(100, 10, txt='Fecha: '+dia, ln=1, align='L')
-    pdf.cell(200, 10, txt='ACTA DE EVALUACIÓN DE TRABAJO DE GRADO', ln=1, align='C')
-    """
+
+        if (nota_final >= 4.5 ):
+            pdf.add_page()
+            pdf.set_font('Arial', "B", size=12)
+            pdf.cell(0, 10, txt='RECOMENDACIÓN DE MENCIÓN DE HONOR AL TRABAJO DE GRADO', ln=1, align='C')
+            imp_datos(pdf, posicion)
+            txt2 = "En atención a que el Trabajo de Grado se distingue porque la calificación del trabajo es superior a 4,50 y se " \
+                   "destaca por dos condiciones (que indicamos) de las siguientes tres como se estipula en el artículo 7.6 de las " \
+                   "Directrices para Trabajo de Grado de Maestría:"
+            pdf.multi_cell(0, 7, txt=txt2, ln=1)
+            pdf.cell(100, 5, txt="", ln=1, align='L')
+            pdf.cell(100, 5, txt="- El estudiante superó los objetivos propuestos. _____ ", ln=1, align='L')
+            pdf.cell(100, 5, txt="- El estudiante demostró una profundidad destacable en el conocimiento y tratamiento del tema. _____ ", ln=1, align='L')
+            pdf.cell(100, 5, txt="- El tema ofrecia una dificultad superior a lo ordinario. _____ ", ln=1, align='L')
+            pdf.cell(100, 5, txt="", ln=1, align='L')
+            pdf.cell(100, 5, txt="", ln=1, align='L')
+            txt3 = "Los Jurados recomendamos que el Consejo de la Facultad otorgue Mención de Honor a este Trabajo de Grado, " \
+                   "y motivamos esta recomendación con base en las siguientes apreciaciones:"
+            pdf.multi_cell(0, 7, txt=txt3, ln=1)
+            pdf.cell(100, 5, txt="", ln=1, align='L')
+            pdf.cell(100, 5, txt="__________________________________________________________", ln=1, align='L')
+            pdf.cell(100, 5, txt="", ln=1, align='L')
+            pdf.cell(100, 5, txt="", ln=1, align='L')
+            pdf.cell(100, 5, txt="___________________________________", ln=0, align='L')
+            pdf.cell(100, 5, txt="___________________________________", ln=1, align='L')
+            pdf.cell(100, 5, txt="Firma del Jurado 1", ln=0, align='L')
+            pdf.cell(100, 5, txt="Firma del Jurado 2", ln=2, align='L')
+            pdf.cell(100, 5, txt="", ln=1, align='L')
+            pdf.set_font('Arial', "B", size=12)
+            pdf.cell(100, 5, txt="Decisión del Consejo de la Facultad:", ln=1, align='L')
+            pdf.set_font('Arial', size=12)
+            pdf.cell(100, 5, txt="- Conceder Mención de Honor al Proyecto de Grado. _______ ", ln=1, align='L')
+            pdf.cell(100, 5, txt="- No Conceder Mención de Honor al Proyecto de Grado. _____ ", ln=1, align='L')
+            pdf.cell(100, 5, txt="- Tal y como se consigna en el Acta No. _____ del Consejo de la Facultad.", ln=1, align='L')
+
+
     numacta = st.text_input('Nombre del acta', '')
     enviar_calificacion = st.button('Generar PDF')
     if enviar_calificacion:
