@@ -94,11 +94,11 @@ def imp_acta(st, controller):
                         tupla = notas.get(key_n)
                         nota_t = ((tupla[0] + tupla[2]) / 2)
                         veri = True
-                        pdf.cell(100, 10, txt=str(nota_t), ln=1, align='L')
+                        pdf.cell(100, 10, txt=str('Calificación parcial: '+ str(nota_t)), ln=1, align='L')
                         pdf.set_font('Arial', size=13)
                 if (veri == False):
                     pdf.set_font('Arial', size=13)
-                    pdf.cell(100, 10, txt=str("Por favor ingresar una calificacion."), ln=1, align='L')
+                    pdf.cell(100, 10, txt=str("Pendiente."), ln=1, align='L')
 
         contador += 1
     """
