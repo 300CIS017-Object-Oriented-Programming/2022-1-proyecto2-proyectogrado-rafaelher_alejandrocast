@@ -35,7 +35,7 @@ class MainView:
 
     def _dibujar_layout(self):
         # Set page title, icon, layout wide (more used space in central area) and sidebar initial state
-        st.set_page_config(page_title="Sistema de gestion de notas", page_icon='', layout="wide",
+        st.set_page_config(page_title="Sistema de gestion de notas", page_icon='https://carrerasuniversitarias.com.co/logos/original/logo-pontificia-universidad-javeriana-cali.webp', layout="wide",
                            initial_sidebar_state="expanded")
         # Defines the number of available columns del area principal
         self.col1, self.col2, self.col3, self.col4 = st.columns([1, 1, 1, 1])
