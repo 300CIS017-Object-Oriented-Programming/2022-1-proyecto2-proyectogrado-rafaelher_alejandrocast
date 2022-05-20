@@ -32,6 +32,11 @@ def calificacion_general(id, st, controller):
     acum = float(acum.__round__(1))
     return acum
 
+def imp_lineas(pdf):
+    pdf.set_font('Arial', size=11)
+    pdf.cell(200, 10, txt="_____________________________________________________________________________________", ln=1,align='L')
+    pdf.cell(200, 10, txt="_____________________________________________________________________________________", ln=1,align='L')
+
 def imp_acta(st, controller):
     from datetime import datetime
     st.title('Generar PDF')
@@ -115,9 +120,7 @@ def imp_acta(st, controller):
                         pdf.cell(150, 10, txt=str('Calificación parcial: '+ str(nota_t)), ln=0, align='L')
                         pdf.cell(100, 10, txt=str('Ponderacion: ' + str(pond)+'%'), ln=1, align='L')
                         pdf.cell(100, 10, txt=str('Observaciones: ' + obser), ln=1, align='L')
-                        pdf.cell(200, 10,txt="_________________________________________________________________________________________",ln=1, align='L')
-                        pdf.cell(200, 10,txt="_________________________________________________________________________________________",ln=1, align='L')
-
+                        imp_lineas(pdf)
 
                         pdf.set_font('Arial', size=11)
                 if (veri == False):
@@ -125,8 +128,7 @@ def imp_acta(st, controller):
                     pdf.cell(150, 10, txt=str('Calificación parcial: Pendiente' ), ln=0, align='L')
                     pdf.cell(100, 10, txt=str('Ponderacion: ' + str(pond)+'%'), ln=1, align='L')
                     pdf.cell(100, 10, txt=str('Observaciones: Pendiente' ), ln=1, align='L')
-                    pdf.cell(200, 10,txt="_________________________________________________________________________________________",ln=1, align='L')
-                    pdf.cell(200, 10,txt="_________________________________________________________________________________________",ln=1, align='L')
+                    imp_lineas(pdf)
             nota_final = calificacion_general(posicion.id_estudiante, st, controller)
             pdf.set_font('Arial', "B", size=11)
             pdf.cell(40, 7, txt="Como resultado de estas calificaciones parciales y sus ponderaciones, la calificación del Trabajo de", ln=1, align='L')
@@ -139,11 +141,9 @@ def imp_acta(st, controller):
             pdf.cell(100, 5, txt="Letras", ln=1, align='L')
             pdf.set_font('Arial', size=12)
             pdf.cell(100, 10, txt=str('Observaciones adicionales: '+obs_ad), ln=1, align='L')
-            pdf.cell(200, 10, txt="_________________________________________________________________________________________",ln=1, align='L')
-            pdf.cell(200, 10, txt="_________________________________________________________________________________________",ln=1, align='L')
+            imp_lineas(pdf)
             pdf.cell(100, 10, txt=str('La calificación final queda sujeta a que se implementen las siguientes correciones: '), ln=1, align='L')
-            pdf.cell(200, 10, txt="_________________________________________________________________________________________",ln=1, align='L')
-            pdf.cell(200, 10, txt="_________________________________________________________________________________________",ln=1, align='L')
+            imp_lineas(pdf)
         contador += 1
     """
     pdf.add_page()
