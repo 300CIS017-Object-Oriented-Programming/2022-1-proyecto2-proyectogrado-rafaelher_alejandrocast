@@ -21,5 +21,6 @@ def Listar_Criterios(st,controller):
             st.title("Bloque "+key)
             aux = controller.criterios.get(key)
             for key2 in aux:
-                st.subheader(key2+ " - "+str(aux.get(key2))+" %")
+                st.subheader(key2+ " - "+str(aux.get(key2))+"%")
+                st.subheader("--------------------------------------------------------------------------------------------")
         contador += 1
