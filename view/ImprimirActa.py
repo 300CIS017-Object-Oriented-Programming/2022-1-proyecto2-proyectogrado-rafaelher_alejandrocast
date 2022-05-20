@@ -7,6 +7,23 @@ def search(clave, d):
          return i
       i+=1
 
+def calificacion_general(id, st, controller):
+    acum = 0
+    criterio = controller.criterio_persona[id]
+    criterio = controller.criterios[criterio]
+    notas = controller.calificaciones[id]
+    for key_c in criterio:
+        for key_n in notas:
+            if(key_c == key_n):
+                tupla = notas.get(key_n)
+                nota_t = ((tupla[0] + tupla[2])/2)
+                porcentaje = (criterio.get(key_c)/100)
+                acum += nota_t*porcentaje
+    return acum
+
+
+
+
 def imp_acta(st, controller):
     from datetime import datetime
     numact = 1

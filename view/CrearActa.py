@@ -4,6 +4,7 @@
 from fpdf import FPDF
 
 from model.EvalAnteproy import EvaluacionAnteproyecto
+from view.ImprimirActa import calificacion_general
 
 
 def instrucciones():
@@ -56,7 +57,6 @@ def listar_evaluacion(st, controller):
     nombres = controller.nombres
     criterios = controller.criterios
     notas = controller.calificaciones
-    dat = criterios["Actuales"]
     st.title("LISTA DE ACTAS ")
     st.subheader("Selecciona el ID del estudiante a listar")
     for calificacion in controller.evaluaciones:
@@ -73,7 +73,8 @@ def listar_evaluacion(st, controller):
         if (contador == index):
             st.title("ACTA NÚMERO "+str(i))
             notas = notas[evaluacion.id_estudiante]
-
+            criterios_p = controller.criterio_persona[evaluacion.id_estudiante]
+            dat = criterios[criterios_p]
             st.subheader("Nombre")
             st.write(evaluacion.nombre)
        # with col1:
@@ -103,7 +104,6 @@ def listar_evaluacion(st, controller):
         #with col1:
             st.subheader("Jurado 2")
             st.write(evaluacion.jurado2)
-
             for key in dat:
                 st.subheader(key)
                 dat2 = notas.get(key)
@@ -112,6 +112,8 @@ def listar_evaluacion(st, controller):
                     st.subheader(dat2)
                 else:
                     st.subheader((dat2[0] + dat2[2])/2)
+            st.subheader("Calificación general")
+            st.text(calificacion_general(evaluacion.id_estudiante, st, controller))
 
             #st.write(criterios.nota_crt1)
         i += 1
