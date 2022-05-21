@@ -8,9 +8,8 @@
 
 ## Presentado por:
 
-* Jean Carlos Santacruz A 
-* Juan Miguel Rojas M
-* Alejandro Castañeda G
+* Rafael Hermida T.
+* Alejandro Castañeda G.
 
 
 
@@ -88,8 +87,10 @@ Peocesador 1.5 GHz en adelante
 * Requisitos de software
 
 Sistema operativo (Windows 7 en adelante)
-
-MinGW
+Your favorite IDE or text editor
+PIP
+Python 10.0
+Streamlit 
 
   <br/><br/><br/>
   <br/><br/><br/>
@@ -97,15 +98,20 @@ MinGW
 
 ## Herramientas utilizadas para el desarrollo
 
-### C++
-Es un lenguaje de programación que proviene de la extensión del lenguaje C para que pudiese manipular objetos. A pesar de ser un lenguaje con muchos años, su gran potencia lo convierte en uno de los lenguajes de programación más demandados en 2019.
+### PYTHON
+Python es un lenguaje de alto nivel de programación interpretado cuya filosofía hace hincapié en la legibilidad de su código, se utiliza para desarrollar aplicaciones de todo tipo, ejemplos: Instagram, Netflix, Panda 3D, entre otros. Se trata de un lenguaje de programación multiparadigma, ya que soporta parcialmente la orientación a objetos, programación imperativa y, en menor medida, programación funcional. Es un lenguaje interpretado, dinámico y multiplataforma.
 
-Fue diseñado a mediados de los años 80 por el danés Bjarne Stroustrup. Si intención fue la de extender el lenguaje de programación C (con mucho éxito en ese momento) para que tuviese los mecanismos necesarios para manipular objetos. Por lo tanto C++ contiene los paradigmas de la programación estructurada y orientada a objetos, por lo que se le conoce como un lenguaje de programación multiparadigma.
+Administrado por Python Software Foundation, posee una licencia de código abierto, denominada Python Software Foundation License. Python se clasifica constantemente como uno de los lenguajes de programación más populares.
 
-### Visual Studio code
+### PyCharm
 
-Es un editor de código fuente desarrollado por Microsoft para Windows, Linux, macOS y Web. Incluye soporte para la depuración, control integrado de Git, resaltado de sintaxis, finalización inteligente de código, fragmentos y refactorización de código. También es personalizable, por lo que los usuarios pueden cambiar el tema del editor, los atajos de teclado y las preferencias. Es gratuito y de código abierto,1​2​ aunque la descarga oficial está bajo software privativo e incluye características personalizadas por Microsoft
+PyCharm es un entorno de desarrollo integrado (IDE) utilizado en programación informática, concretamente para el lenguaje de programación Python. Está desarrollado por la empresa checa JetBrains (antes conocida como IntelliJ). Proporciona análisis de código, un depurador gráfico, un probador de unidades integrado, integración con sistemas de control de versiones (VCS), y soporta el desarrollo web con Django, así como la ciencia de datos con Anaconda.
 
+PyCharm es multiplataforma, con versiones para Windows, macOS y Linux. La Community Edition (edición comunitaria) se publica bajo la Licencia apache, y también hay una Professional Edition (edición profesional) con características adicionales publicada bajo una licencia propietaria financiada por suscripción y también una versión educativa.
+
+### Streamlit
+
+Streamlit es una biblioteca Python de código abierto que facilita la creación y el intercambio de hermosas aplicaciones web personalizadas para el aprendizaje automático y la ciencia de datos. En solo unos minutos, puede crear e implementar potentes aplicaciones de datos.
 
 
   <br/><br/><br/>
@@ -115,7 +121,8 @@ Es un editor de código fuente desarrollado por Microsoft para Windows, Linux, m
 ## Diagrama UML
 
 
-![](https://github.com/JuanRx19/ClinicaVeterinaria/blob/main/ClinicaVeterinariUML.drawio.png?raw=true)
+![](![image](https://user-images.githubusercontent.com/20478044/169628786-66246679-7422-4a14-aef2-9c41972e6a7f.png)
+)
 
 
 
