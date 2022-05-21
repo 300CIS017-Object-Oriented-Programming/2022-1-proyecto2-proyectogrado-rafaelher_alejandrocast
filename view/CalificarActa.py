@@ -8,7 +8,6 @@ def search(index, d):
 
 def calificar_acta(st, controller):
     ids = []
-    ver = 0
     criterios = controller.criterios
     st.title("CALIFICACIÓN DE ACTAS ")
     st.subheader("Selecciona el ID del estudiante a calificar")
@@ -31,15 +30,10 @@ def calificar_acta(st, controller):
                 observaciong = st.text_input("Observación general:")
                 guardar = st.button("Guardar")
                 if guardar:
-                    p = controller.criterio_persona[seleccion]
-                    st.text(p)
                     if (controller.criterio_persona[seleccion] != seleccion_2):
                         controller.calificaciones[seleccion].clear()
                         controller.criterio_persona[seleccion] = seleccion_2
                     st.text("Se ha calificado a " + str(controller.nombres.get(seleccion)) + " exitosamente")
                     tupla = (nota_crt1, nota_crt2, observaciong)
                     d_calificaciones[seleccion_3] = tupla
-                    controller.calificaciones[seleccion].setdefault(seleccion_3, tupla)
-                    t = controller.calificaciones[seleccion]
-                    st.text(t)
-            ver = 1
+                    controller.calificaciones[seleccion][seleccion_3] = tupla

@@ -32,10 +32,10 @@ def calificacion_general(id, st, controller):
     acum = float(acum.__round__(1))
     return acum
 
-def imp_lineas(pdf):
+def imp_lineas(pdf, num):
     pdf.set_font('Arial', size=11)
-    pdf.cell(200, 10, txt="_____________________________________________________________________________________", ln=1,align='L')
-    pdf.cell(200, 10, txt="_____________________________________________________________________________________", ln=1,align='L')
+    for i in range (num):
+        pdf.cell(200, 10, txt="_____________________________________________________________________________________", ln=1,align='L')
 
 def imp_datos(pdf, posicion):
     pdf.set_font('Arial', size=12)
@@ -125,16 +125,16 @@ def imp_acta(st, controller):
                         pdf.set_font('Arial', size=11)
                         pdf.cell(150, 10, txt=str('Calificación parcial: '+ str(nota_t)), ln=0, align='L')
                         pdf.cell(100, 10, txt=str('Ponderacion: ' + str(pond)+'%'), ln=1, align='L')
-                        pdf.cell(100, 10, txt=str('Observaciones: ' + obser), ln=1, align='L')
-                        imp_lineas(pdf)
+                        pdf.multi_cell(0, 10, txt=str('Observaciones: ' + obser), ln=1, align='L')
+                        imp_lineas(pdf,2)
 
                         pdf.set_font('Arial', size=11)
                 if (veri == False):
                     pdf.set_font('Arial', size=11)
                     pdf.cell(150, 10, txt=str('Calificación parcial: Pendiente' ), ln=0, align='L')
                     pdf.cell(100, 10, txt=str('Ponderacion: ' + str(pond)+'%'), ln=1, align='L')
-                    pdf.cell(100, 10, txt=str('Observaciones: Pendiente' ), ln=1, align='L')
-                    imp_lineas(pdf)
+                    pdf.cell(100, 10, txt=str('Observaciones: ' ), ln=1, align='L')
+                    imp_lineas(pdf,2)
             nota_final = calificacion_general(posicion.id_estudiante, st, controller)
             pdf.set_font('Arial', "B", size=11)
             pdf.cell(40, 7, txt="Como resultado de estas calificaciones parciales y sus ponderaciones, la calificación del Trabajo de", ln=1, align='L')
@@ -146,13 +146,18 @@ def imp_acta(st, controller):
             pdf.cell(150, 5, txt="Números", ln=0, align='L')
             pdf.cell(100, 5, txt="Letras", ln=1, align='L')
             pdf.set_font('Arial', size=12)
-            pdf.cell(100, 10, txt=str('Observaciones adicionales: '+obs_ad), ln=1, align='L')
-            imp_lineas(pdf)
+            pdf.multi_cell(0, 10, txt=str('Observaciones adicionales: '+obs_ad), ln=1, align='L')
+            imp_lineas(pdf,3)
             pdf.cell(100, 10, txt=str('La calificación final queda sujeta a que se implementen las siguientes correciones: '), ln=1, align='L')
-            imp_lineas(pdf)
+            imp_lineas(pdf,3)
+            pdf.cell(100, 40, txt='', ln=1, align='L')
+            pdf.cell(100, 5, txt="___________________________________", ln=0, align='L')
+            pdf.cell(100, 5, txt="___________________________________", ln=1, align='L')
+            pdf.cell(100, 5, txt="Firma del Jurado 1", ln=0, align='C')
+            pdf.cell(100, 5, txt="Firma del Jurado 2", ln=2, align='C')
         contador += 1
 
-        if (nota_final >= 4.5 ):
+        if (nota_final > 4.5 ):
             pdf.add_page()
             pdf.set_font('Arial', "B", size=12)
             pdf.cell(0, 10, txt='RECOMENDACIÓN DE MENCIÓN DE HONOR AL TRABAJO DE GRADO', ln=1, align='C')
@@ -171,13 +176,12 @@ def imp_acta(st, controller):
                    "y motivamos esta recomendación con base en las siguientes apreciaciones:"
             pdf.multi_cell(0, 7, txt=txt3, ln=1)
             pdf.cell(100, 5, txt="", ln=1, align='L')
-            pdf.cell(100, 5, txt="__________________________________________________________", ln=1, align='L')
-            pdf.cell(100, 5, txt="", ln=1, align='L')
-            pdf.cell(100, 5, txt="", ln=1, align='L')
+            imp_lineas(pdf, 1)
+            pdf.cell(100, 20, txt="", ln=1, align='L')
             pdf.cell(100, 5, txt="___________________________________", ln=0, align='L')
             pdf.cell(100, 5, txt="___________________________________", ln=1, align='L')
-            pdf.cell(100, 5, txt="Firma del Jurado 1", ln=0, align='L')
-            pdf.cell(100, 5, txt="Firma del Jurado 2", ln=2, align='L')
+            pdf.cell(100, 5, txt="Firma del Jurado 1", ln=0, align='C')
+            pdf.cell(100, 5, txt="Firma del Jurado 2", ln=2, align='C')
             pdf.cell(100, 5, txt="", ln=1, align='L')
             pdf.set_font('Arial', "B", size=12)
             pdf.cell(100, 5, txt="Decisión del Consejo de la Facultad:", ln=1, align='L')

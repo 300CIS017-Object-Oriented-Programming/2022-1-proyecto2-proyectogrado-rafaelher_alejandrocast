@@ -6,6 +6,35 @@ from fpdf import FPDF
 from model.EvalAnteproy import EvaluacionAnteproyecto
 from view.ImprimirActa import calificacion_general
 
+def verificar_vacio(evaluacion_obj):
+    if(evaluacion_obj.nombre == ''):
+        return True
+    if(evaluacion_obj.id_estudiante == ''):
+        return True
+    if(evaluacion_obj.tema_proyecto == ''):
+        return True
+    if (evaluacion_obj.periodo == ''):
+        return True
+    if (evaluacion_obj.director == ''):
+        return True
+    if (evaluacion_obj.enfasis == ''):
+        return True
+    if (evaluacion_obj.co_director == ''):
+        return True
+    if (evaluacion_obj.modalidad == ''):
+        return True
+    if (evaluacion_obj.jurado1 == ''):
+        return True
+    if (evaluacion_obj.jurado2 == ''):
+        return True
+    return False
+
+def verificar_id(controller, id_):
+    dic = controller.nombres
+    for key in dic:
+        if(key == id_):
+            return True
+    return False
 
 def instrucciones():
     return """
@@ -34,11 +63,19 @@ def agregar_evaluacion(st, controller):
     enviado_btn = st.button("Guardar")
     # Cuando se oprime el boton se agrega a la lista
     if enviado_btn:
-        controller.agregar_evaluacion(evaluacion_obj)
-        st.write("Evaluacion agregada exitosamente")
-        controller.nombres[evaluacion_obj.id_estudiante] = evaluacion_obj.nombre
-        controller.calificaciones[evaluacion_obj.id_estudiante] = {}
-        controller.criterio_persona[evaluacion_obj.id_estudiante] = 'Actuales'
+        vacio_idt = verificar_vacio(evaluacion_obj)
+        if (vacio_idt == False):
+            cond_idt = verificar_id(controller, evaluacion_obj.id_estudiante)
+            if (cond_idt == False):
+                controller.agregar_evaluacion(evaluacion_obj)
+                st.write("Acta agregada exitosamente")
+                controller.nombres[evaluacion_obj.id_estudiante] = evaluacion_obj.nombre
+                controller.calificaciones[evaluacion_obj.id_estudiante] = {}
+                controller.criterio_persona[evaluacion_obj.id_estudiante] = 'Actuales'
+            else:
+                st.write("No se puede generar el acta porque el id ya se encuentra registrado en el sistema")
+        else:
+            st.write("No se puede generar el acta porque hay criterios vacíos")
     # Retorna el controlador pq solo las colecciones se pasan en python por referencia,
     # entonces de esta manera se actualiza el controlador en la vista principal
     return controller
@@ -109,9 +146,9 @@ def listar_evaluacion(st, controller):
                 dat2 = notas.get(key)
                 if (dat2 == None):
                     dat2 = 'Por favor Ingresar el valor de la calificación.'
-                    st.subheader(dat2)
+                    st.text(dat2)
                 else:
-                    st.subheader((dat2[0] + dat2[1])/2)
+                    st.text((dat2[0] + dat2[1])/2)
             st.subheader("Calificación general")
             st.text(calificacion_general(evaluacion.id_estudiante, st, controller))
 

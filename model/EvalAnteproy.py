@@ -14,7 +14,7 @@ class EvaluacionAnteproyecto:
         self.nombre_estudiante = ""
         self.id_estudiante = ""
         self.tema_proyecto = ""
-        self.version_doc = " "  # Identifica la version en la que va la evaluación
+        self.version_doc = ""  # Identifica la version en la que va la evaluación
 
         # Llamado al método que inicializa la información precargada
         self._inicializar_criterios()
