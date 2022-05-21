@@ -11,7 +11,6 @@ from ImprimirActa import imp_acta
 from CrearCriterio import Nuevo_Criterio
 from ListarCriterios import Listar_Criterios
 
-
 class MainView:
     def __init__(self) -> None:
         super().__init__()
