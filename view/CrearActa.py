@@ -41,6 +41,19 @@ def instrucciones():
            Por favor rellenar todos los espacios en este apartado para poder crear el acta. \n\n\n\n\n
            """
 
+def id_sinLetras(id):
+    numeros = "1234567890"
+    condicion = False
+    for caracter in id:
+        for numero in numeros:
+            if (caracter == numero):
+                condicion = True
+        if(condicion == False):
+            return True
+        condicion = False
+    return False
+
+
 def agregar_evaluacion(st, controller):
     # Objecto que modelará el formulario
     evaluacion_obj = EvaluacionAnteproyecto()
@@ -67,11 +80,14 @@ def agregar_evaluacion(st, controller):
         if (vacio_idt == False):
             cond_idt = verificar_id(controller, evaluacion_obj.id_estudiante)
             if (cond_idt == False):
-                controller.agregar_evaluacion(evaluacion_obj)
-                st.write("Acta agregada exitosamente")
-                controller.nombres[evaluacion_obj.id_estudiante] = evaluacion_obj.nombre
-                controller.calificaciones[evaluacion_obj.id_estudiante] = {}
-                controller.criterio_persona[evaluacion_obj.id_estudiante] = 'Actuales'
+                if (id_sinLetras(evaluacion_obj.id_estudiante) == False):
+                    controller.agregar_evaluacion(evaluacion_obj)
+                    st.write("Acta agregada exitosamente")
+                    controller.nombres[evaluacion_obj.id_estudiante] = evaluacion_obj.nombre
+                    controller.calificaciones[evaluacion_obj.id_estudiante] = {}
+                    controller.criterio_persona[evaluacion_obj.id_estudiante] = 'Actuales'
+                else:
+                    st.write("No se puede generar el acta porque el id contiene caracteres diferentes a números")
             else:
                 st.write("No se puede generar el acta porque el id ya se encuentra registrado en el sistema")
         else:
