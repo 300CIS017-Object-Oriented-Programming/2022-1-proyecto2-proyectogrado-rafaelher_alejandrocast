@@ -1,6 +1,6 @@
 # Manual Tecnico
 
-## Desarrollo del sistema para la clinica veterinaria 
+## Desarrollo del sistema para la Gestion de las actas de trabajos de grado.
 
 <br/><br/><br/>
 <br/><br/><br/>
@@ -121,8 +121,7 @@ Streamlit es una biblioteca Python de código abierto que facilita la creación 
 ## Diagrama UML
 
 
-![](![image](https://user-images.githubusercontent.com/20478044/169628786-66246679-7422-4a14-aef2-9c41972e6a7f.png)
-)
+![](https://github.com/300CIS017-Object-Oriented-Programming/2022-1-proyecto2-proyectogrado-rafaelher_alejandrocast/blob/main/proyecto2POO.png)
 
 
 
@@ -133,74 +132,59 @@ Streamlit es una biblioteca Python de código abierto que facilita la creación 
 ## Casos de uso
 <br/><br/><br/>
 
-| Caso de uso:  | Registrar Cliente |
+| Caso de uso:  | Crear Acta |
 | ------------- |-------------|
 | Actores:       | Administrador|
-| Descripción   |el administrador registra y almacena el nombre completo, email, documento de identidad y teléfono de cada propietario responsable |
+| Descripción   |el administrador podra crear las actas con los datos del autor, id del estudiante, tema del proyecto, periodo, director, co-director, enfasis, Modalidad, jurado 1, jurado 2|
 
 <br/><br/><br/>
 
-| Caso de uso:  | Registrar mascota |
+| Caso de uso:  | Crear Criterio |
 | ------------- |-------------|
 | Actores:       | Administrador|
-| Descripción   |el administrador registra y almacena la información de cada mascota. Esta información consiste en la raza, el tipo: perro  gato  otro, el peso, la edad, tipo de sangre, el nombre, la identificación, status: viva muerta. Si la mascota ha fallecido también registra la fecha de defunción. |
+| Descripción   |el administrador registra y almacena la información de cada nuevo bloque de criterios con su valor porcentual y su nombre. |
   
 <br/><br/><br/>
 
 
- | Caso de uso:  | asignar mascota |
+ | Caso de uso:  | Calificar Actas |
 | ------------- |-------------|
 | Actores:       | Administrador|
-| Descripción   | el administrador asigna mascota a los clientes | 
+| Descripción   | el administrador puede calificar las actas registradas los con bloques de criterios  | 
 
 <br/><br/><br/>
 
 
- | Caso de uso:  | verificar clientes |
+ | Caso de uso:  | Listar actas |
 | ------------- |-------------|
 | Actores:       | Administrador|
-| Descripción   | el administrador verifica cuantos propietarios se encuentran registrados en el directorio | 
+| Descripción   | el administrador puede listar las actas para verificar si los datos registrados estan completos y correctos para poder imprimir  | 
 
 <br/><br/><br/>
 
 
- | Caso de uso:  | listar informacion clientes |
+ | Caso de uso:  | Imprimir actas |
 | ------------- |-------------|
 | Actores:       | Administrador|
-| Descripción   | el administrador puede listar la informacion disponible de cada cliente |
+| Descripción   | el administrador puede imprimir las actas de trabajos de grado por el numero de id del estudiante |
 
 
 <br/><br/><br/>
 
 
- | Caso de uso:  | listar mascotas |
+ | Caso de uso:  | listar Criterios |
 | ------------- |-------------|
 | Actores:       | Administrador|
-| Descripción   | el administrador puede listar la informacion de cada mascota incluyendo los datos de su dueño |
+| Descripción   | el administrador puede listar la informacion de cada bloque de criterios para poder verificar si la informacion de estos esta correcta.  |
+
 
 <br/><br/><br/>
 
 
- | Caso de uso:  | asignar propietario |
+ | Caso de uso:  | eliminar bloque de criterios |
 | ------------- |-------------|
 | Actores:       | Administrador|
-| Descripción   | el administrador puede asignar mascota a nuevos cleintes inscritos en el sistema | 
-
-<br/><br/><br/>
-
-
- | Caso de uso:  | cambiar status mascota |
-| ------------- |-------------|
-| Actores:       | Administrador|
-| Descripción   | el administrador asigna el starus que se encuentra la mascota ( viva o muerta |
-
-<br/><br/><br/>
-
-
- | Caso de uso:  | eliminar propietario |
-| ------------- |-------------|
-| Actores:       | Administrador|
-| Descripción   | el administrador podra eliminar propietarios de las mascotas | 
+| Descripción   | el administrador podra eliminar los bloque de criterios que ya no necesita y dejar el bloque de criterios principal | 
  
  
 <br/><br/><br/>
@@ -210,36 +194,30 @@ Streamlit es una biblioteca Python de código abierto que facilita la creación 
 ## Principales funcionalidades
 <br/><br/><br/>  
 
-* Registrar cliente.
+* Registrar actas.
 
-El sistema podra registar cliente a la base de el programa donde almacenara los datos principales de este como nombre completo , documento de identificacion, email y telefono de contacto.
+El sistema podra registar las actas a la base de datos de el programa donde se almacenara los datos de este como nombre del autor, id del autor, tema del proyecto, periodo, director, co-director énfasis, modalidad, jurado 1 y jurado 2. 
 
-* Registrar mascota
+* Crear bloque de criterios
 
-El sistema podra registrar mascotas a la base de el programa donde registrara y almacenara la informacion de cada mascota Esta información consiste en la raza, el tipo: perro gato otro, el peso, la edad, tipo de sangre, el nombre, la identificación, status: viva muerta. Si la mascota ha fallecido también registra la fecha de defunción.
+El sistema podra registrar nuevos bloques de criterios con su respectivo valor porcentual 
 
-* Asignar mascotas
+* Calificar actas
 
-El sistema podra asignar mascotas a los clientes que quedan con estado de propietario de dicha mascota para poder asociarlos entre si.
+El sistema podra calificar las actas creadas con sus respectivos bloques de criterios.
 
-* Verificar clientes
+* Listar actas
 
-El sistema podra verificar la informacion del sistema y cuantos hay en ese momento registrados dentro del programa.
+El sistema podra Listar las actas existentes en el sistema para poder verificar si los datos creados estan correctos.
 
-* informacion de los clientes
+* Imprimir actas
 
-El sistema podra listar la informacion disponible de cada cliente y modificar cada una de ellas.
+El sistema podra imprimir las actas listandolas con el nombre de el id.
 
-* Verificar mascotas
+* Listar criterios
 
-El sistema podra listar la informacion disponible de cada mascota y modificar cada una de ellas.
+El sistema podra listar los bloques de criterios existentes para saber con cual de ellos se evaluara cada proyecto de grado.
 
-* Asignar propietario
-
-El sistema podra asignar un nuevo propietario a una mascota tanto como eliminar este mismo de otra mascota.
-
-* Cambiar status de la mascota.
-El sistema podra cambiar el status a las mascotas dandole dos tipos de esta (VIVA O MUERTA)
 
 
 
@@ -252,50 +230,50 @@ El sistema podra cambiar el status a las mascotas dandole dos tipos de esta (VIV
 ## Métodos, Entradas y Salidas
 <br/><br/><br/>
 
-* Mascota.
- 
+* Crear acta
+
 Entradas:
-* nombre
-* tipo de sangre
-* tipo de animal
-* raza
-* peso
-* edad
-* identificación
-* status
+* Autor
+* Id del autor
+* Tema del proyecto
+* Periodo
+* Director
+* Cp-director
+* Enfasis
+* Modalidad
+* Jurado 1
+* Jurado 2
 
 
 Salidas:
-* nombre
-* tipo de sangre
-* tipo de animal
-* raza
-* peso
-* edad
-* identificación
-* status
+* Autor
+* Id del autor
+* Tema del proyecto
+* Periodo
+* Director
+* Cp-director
+* Enfasis
+* Modalidad
+* Jurado 1
+* Jurado 2
 
 
-*  Cliente.
-
-Entrada:
-* nombre
-* identificación
-* telefono
-* email
-
-Salida:
-* nombre
-* identificación
-* telefono
-* email
-
-* Status.
+*  Crear Criterio
 
 Entrada:
-* estado
-* fecha de defunció
+* Nombre del criterio
+* valor porcentual
 
 Salida:
-* estado
-* fecha de defunció
+* Nombre del criterio
+* valor porcentual
+
+* Imprimir acta
+
+Entrada:
+* Observaciones adicionales
+* Nombre del acta
+
+Salida:
+* Observaciones adicionales
+* Nombre del acta
