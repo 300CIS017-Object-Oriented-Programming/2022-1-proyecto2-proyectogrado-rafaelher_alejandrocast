@@ -127,7 +127,6 @@ def imp_acta(st, controller):
                         pdf.cell(100, 10, txt=str('Ponderacion: ' + str(pond)+'%'), ln=1, align='L')
                         pdf.multi_cell(0, 10, txt=str('Observaciones: ' + obser), ln=1, align='L')
                         imp_lineas(pdf,2)
-
                         pdf.set_font('Arial', size=11)
                 if (veri == False):
                     pdf.set_font('Arial', size=11)
@@ -156,7 +155,6 @@ def imp_acta(st, controller):
             pdf.cell(100, 5, txt="Firma del Jurado 1", ln=0, align='C')
             pdf.cell(100, 5, txt="Firma del Jurado 2", ln=2, align='C')
         contador += 1
-
         if (nota_final > 4.5 ):
             pdf.add_page()
             pdf.set_font('Arial', "B", size=12)
@@ -189,13 +187,12 @@ def imp_acta(st, controller):
             pdf.cell(100, 5, txt="- Conceder Mención de Honor al Proyecto de Grado. _______ ", ln=1, align='L')
             pdf.cell(100, 5, txt="- No Conceder Mención de Honor al Proyecto de Grado. _____ ", ln=1, align='L')
             pdf.cell(100, 5, txt="- Tal y como se consigna en el Acta No. _____ del Consejo de la Facultad.", ln=1, align='L')
-
-
-    numacta = st.text_input('Nombre del acta', '')
-    enviar_calificacion = st.button('Generar PDF')
-    if enviar_calificacion:
-        pdf.output(numacta+'.pdf')
-        st.write('ACTA GENERADA')
-        st.write('El nombre del acta es:', numacta + '.pdf')
-    while numact < 10000:
-        numact += 1
+    if(seleccion != None):
+        numacta = st.text_input('Nombre del acta', '')
+        enviar_calificacion = st.button('Generar PDF')
+        if enviar_calificacion:
+            pdf.output(numacta+'.pdf')
+            st.write('ACTA GENERADA')
+            st.write('El nombre del acta es:', numacta + '.pdf')
+        while numact < 10000:
+            numact += 1

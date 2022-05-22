@@ -1,7 +1,6 @@
 import json
 
 class EvaluacionAnteproyecto:
-
     def __init__(self) -> None:
         super().__init__()
         self.criterios = {"planteamiento": [], "objetivos": [], "justificacion": [], "generales": [], "titulo": []}
