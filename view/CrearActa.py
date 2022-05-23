@@ -1,5 +1,3 @@
-
-
 """ Este archivo contine las funcionalidades de la vista relacionado con la evaluacion de los anteproyectos"""
 from fpdf import FPDF
 
@@ -41,6 +39,18 @@ def instrucciones():
            Por favor rellenar todos los espacios en este apartado para poder crear el acta. \n\n\n\n\n
            """
 
+def id_sinLetras(id):
+    numeros = "1234567890"
+    condicion = False
+    for caracter in id:
+        for numero in numeros:
+            if (caracter == numero):
+                condicion = True
+        if(condicion == False):
+            return True
+        condicion = False
+    return False
+
 def agregar_evaluacion(st, controller):
     # Objecto que modelará el formulario
     evaluacion_obj = EvaluacionAnteproyecto()
@@ -67,11 +77,14 @@ def agregar_evaluacion(st, controller):
         if (vacio_idt == False):
             cond_idt = verificar_id(controller, evaluacion_obj.id_estudiante)
             if (cond_idt == False):
-                controller.agregar_evaluacion(evaluacion_obj)
-                st.write("Acta agregada exitosamente")
-                controller.nombres[evaluacion_obj.id_estudiante] = evaluacion_obj.nombre
-                controller.calificaciones[evaluacion_obj.id_estudiante] = {}
-                controller.criterio_persona[evaluacion_obj.id_estudiante] = 'Actuales'
+                if (id_sinLetras(evaluacion_obj.id_estudiante) == False):
+                    controller.agregar_evaluacion(evaluacion_obj)
+                    st.write("Acta agregada exitosamente")
+                    controller.nombres[evaluacion_obj.id_estudiante] = evaluacion_obj.nombre
+                    controller.calificaciones[evaluacion_obj.id_estudiante] = {}
+                    controller.criterio_persona[evaluacion_obj.id_estudiante] = 'Actuales'
+                else:
+                    st.write("No se puede generar el acta porque el id contiene caracteres diferentes a números")
             else:
                 st.write("No se puede generar el acta porque el id ya se encuentra registrado en el sistema")
         else:
@@ -80,14 +93,12 @@ def agregar_evaluacion(st, controller):
     # entonces de esta manera se actualiza el controlador en la vista principal
     return controller
 
-
 def search(clave, d):
    i = 0
    for key in d:
       if key == clave:
          return i
       i+=1
-
 
 def listar_evaluacion(st, controller):
     ids = []
@@ -99,12 +110,10 @@ def listar_evaluacion(st, controller):
     for calificacion in controller.evaluaciones:
         ids.append(calificacion.id_estudiante)
     seleccion = st.selectbox("Seleccione:", ids)
-
     """Itera los elementos de evaluacion agregados y los muestra"""
     i = 1
     e = 0
     index = search(seleccion, nombres)
-
     contador = 0
     for evaluacion in controller.evaluaciones:
         if (contador == index):
@@ -151,76 +160,6 @@ def listar_evaluacion(st, controller):
                     st.text((dat2[0] + dat2[1])/2)
             st.subheader("Calificación general")
             st.text(calificacion_general(evaluacion.id_estudiante, st, controller))
-
-            #st.write(criterios.nota_crt1)
         i += 1
         e += 1
         contador += 1
-
-"""
-
-def exp_acta(st, controller):
-    from datetime import datetime
-    numact = 1
-    st.title('Generar PDF')
-    pdf = FPDF()
-    pdf.add_page()
-    dia = datetime.today().strftime('%Y-%m-%d')
-    año = datetime.today().strftime('%Y')
-    pdf.set_font('Arial', "B", size=17)
-    pdf.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png',15 , 10, 40)
-    pdf.cell(200, 10, txt='Facultad de Ingeniería', ln=1, align='C')
-    pdf.cell(200, 10, txt='Maestría en Ingeniería', ln=2, align='C')
-    pdf.set_font('Arial', "B", size=13)
-    pdf.cell(150, 10, txt='ACTA: '+"11"+'-'+año, ln=0, align='L')
-    pdf.cell(16, 10, txt='Fecha: ', ln=0, align='L')
-    pdf.set_font('Arial', size=13)
-    pdf.cell(0, 10, txt=dia, ln=1, align='L')
-    pdf.set_font('Arial', "B", size=13)
-    pdf.cell(200, 10, txt='ACTA DE EVALUACIÓN DE TRABAJO DE GRADO', ln=1, align='C')
-    pdf.set_font('Arial', size=13)
-
-
-
-    for posicion in controller.evaluaciones:
-        pdf.cell(63, 10, txt='Trabajo de grado denominado: ', ln=0, align='L')
-        pdf.cell(80, 10, txt=str(posicion.tema_proyecto), ln=1, align='L')
-        pdf.cell(40, 10, txt='Autor: ', ln=0, align='L')
-        pdf.cell(100, 10, txt=str(posicion.nombre), ln=0, align='L')
-        pdf.cell(50, 10, txt='ID: '+str(posicion.id_estudiante), ln=1, align='L')
-        pdf.cell(40, 10, txt='Periodo: ', ln=0, align='L')
-        pdf.cell(100, 10, txt=str(posicion.periodo), ln=1, align='L')
-        pdf.cell(40, 10, txt='Director: ', ln=0, align='L')
-        pdf.cell(100, 10, txt=str(posicion.director), ln=1, align='L')
-        pdf.cell(40, 10, txt='Co-Director: ', ln=0, align='L')
-        pdf.cell(100, 10, txt=str(posicion.co_director), ln=1, align='L')
-        pdf.cell(40, 10, txt='Énfasis en:  ', ln=0, align='L')
-        pdf.cell(100, 10, txt=str(posicion.enfasis), ln=1, align='L')
-        pdf.cell(40, 10, txt='Modalidad:  ', ln=0, align='L')
-        pdf.cell(100, 10, txt=str(posicion.modalidad), ln=1, align='L')
-        pdf.cell(40, 10, txt='Jurado 1:  ', ln=0, align='L')
-        pdf.cell(100, 10, txt=str(posicion.jurado1), ln=1, align='L')
-        pdf.cell(40, 10, txt='Jurado 2:  ', ln=0, align='L')
-        pdf.cell(100, 10, txt=str(posicion.jurado2), ln=1, align='L')
-
-    pdf.add_page()
-    dia = datetime.today().strftime('%Y-%m-%d')
-    año = datetime.today().strftime('%Y')
-    pdf.set_font('Arial', size=13)
-    pdf.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png',15 , 10, 40)
-    pdf.cell(200, 10, txt='Facultad de Ingeniería', ln=1, align='C')
-    pdf.cell(200, 10, txt='Maestría en Ingeniería', ln=1, align='C')
-    pdf.cell(100, 10, txt='ACTA: '+"11"+'-'+año, ln=0, align='L')
-    pdf.cell(100, 10, txt='Fecha: '+dia, ln=1, align='L')
-    pdf.cell(200, 10, txt='ACTA DE EVALUACIÓN DE TRABAJO DE GRADO', ln=1, align='C')
-
-    enviar_calificacion = st.button('Generar PDF')
-    numacta = st.text_input('Nombre del acta', '')
-    if enviar_calificacion:
-        pdf.output(numacta+'.pdf')
-        st.write('ACTA GENERADA')
-        st.write('El nombre del acta es:', numacta + '.pdf')
-    while numact < 10000:
-        numact += 1
-"""
-# Main call

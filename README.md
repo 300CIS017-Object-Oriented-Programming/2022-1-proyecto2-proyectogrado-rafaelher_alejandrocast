@@ -1,12 +1,12 @@
-# Readme
+# README
 
-## Desarrollo sistema para la Gestion de las actas de trabajos de grado.
+## Desarrollo sistema para la gestión de las actas de trabajos de grado.
 
 <br/><br/><br/>
 <br/><br/><br/>
 
-## 	Descripcion:
-* Este sistema web se realiza para darle gestion y solucion a la calificacion a el sistema de las actas de grado ya que estas se estaban calificando directamente desde un excel, este programa automatiza las funciones que realiza el administrador o la persona que realiza la calificacion de estas actas.
+## 	Descripción:
+* Este sistema web se realiza para darle gestión y solución a la calificación a el sistema de las actas de grado, ya que estas se estaban calificando directamente desde un archivo Excel. Este programa automatiza las funciones que realiza el administrador o la persona que realiza la calificación de estas actas.
 
 
 ## Guia
@@ -27,58 +27,58 @@
 ## Casos de uso
 <br/><br/><br/>
 
-| Caso de uso:  | Crear Acta |
-| ------------- |-------------|
-| Actores:       | Administrador|
-| Descripción   |el administrador podra crear las actas con los datos del autor, id del estudiante, tema del proyecto, periodo, director, co-director, enfasis, Modalidad, jurado 1, jurado 2|
+| Caso de uso:  | Crear Acta                                                                                                                                                                     |
+| ------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Actores:       | Administrador                                                                                                                                                                  |
+| Descripción   | el administrador podra crear las actas con los datos del autor, ID del estudiante, tema del proyecto, periodo, director, co-director, énfasis, modalidad, jurado 1 y jurado 2. |
 
 <br/><br/><br/>
 
-| Caso de uso:  | Crear Criterio |
-| ------------- |-------------|
-| Actores:       | Administrador|
-| Descripción   |el administrador registra y almacena la información de cada nuevo bloque de criterios con su valor porcentual y su nombre. |
+| Caso de uso:  | Crear Criterio                                                                                                             |
+| ------------- |----------------------------------------------------------------------------------------------------------------------------|
+| Actores:       | Administrador                                                                                                              |
+| Descripción   | El administrador registra y almacena la información de cada nuevo bloque de criterios con su valor porcentual y su nombre. |
   
 <br/><br/><br/>
 
 
- | Caso de uso:  | Calificar Actas |
-| ------------- |-------------|
-| Actores:       | Administrador|
-| Descripción   | el administrador puede calificar las actas registradas los con bloques de criterios  | 
+ | Caso de uso:  | Calificar Actas                                                                      |
+| ------------- |--------------------------------------------------------------------------------------|
+| Actores:       | Administrador                                                                        |
+| Descripción   | El administrador puede calificar las actas registradas los con bloques de criterios. | 
 
 <br/><br/><br/>
 
 
- | Caso de uso:  | Listar actas |
-| ------------- |-------------|
-| Actores:       | Administrador|
-| Descripción   | el administrador puede listar las actas para verificar si los datos registrados estan completos y correctos para poder imprimir  | 
+ | Caso de uso:  | Listar actas                                                                                                                                    |
+| ------------- |-------------------------------------------------------------------------------------------------------------------------------------------------|
+| Actores:       | Administrador                                                                                                                                   |
+| Descripción   | El administrador puede listar las actas para verificar si los datos registrados están completos y correctos para realizar la generacón del PDF. | 
 
 <br/><br/><br/>
 
 
- | Caso de uso:  | Imprimir actas |
-| ------------- |-------------|
-| Actores:       | Administrador|
-| Descripción   | el administrador puede imprimir las actas de trabajos de grado por el numero de id del estudiante |
-
-
-<br/><br/><br/>
-
-
- | Caso de uso:  | listar Criterios |
-| ------------- |-------------|
-| Actores:       | Administrador|
-| Descripción   | el administrador puede listar la informacion de cada bloque de criterios para poder verificar si la informacion de estos esta correcta.  |
+ | Caso de uso:  | Imprimir actas                                                                                 |
+| ------------- |------------------------------------------------------------------------------------------------|
+| Actores:       | Administrador                                                                                  |
+| Descripción   | El administrador puede imprimir las actas de trabajos de grado indicando el ID del estudiante. |
 
 
 <br/><br/><br/>
 
 
- | Caso de uso:  | eliminar bloque de criterios |
-| ------------- |-------------|
-| Actores:       | Administrador|
+ | Caso de uso:  | Listar Criterios                                                                                                                        |
+| ------------- |-----------------------------------------------------------------------------------------------------------------------------------------|
+| Actores:       | Administrador                                                                                                                           |
+| Descripción   | El administrador puede listar la informacion de cada bloque de criterios para poder verificar si la información de estos está correcta. |
+
+
+<br/><br/><br/>
+
+
+ | Caso de uso:  | Eliminar bloque de criterios                                                                                        |
+| ------------- |---------------------------------------------------------------------------------------------------------------------|
+| Actores:       | Administrador                                                                                                       |
 | Descripción   | el administrador podra eliminar los bloque de criterios que ya no necesita y dejar el bloque de criterios principal | 
  
  
@@ -91,25 +91,25 @@
 
 * Registrar actas.
 
-El sistema podra registar las actas a la base de datos de el programa donde se almacenara los datos de este como nombre del autor, id del autor, tema del proyecto, periodo, director, co-director énfasis, modalidad, jurado 1 y jurado 2. 
+El sistema podrá registar las actas a la base de datos del programa donde se almacenarán los datos del mismo, tales como: nombre del autor, ID del autor, tema del proyecto, periodo, director, co-director énfasis, modalidad, jurado 1 y jurado 2. 
 
 * Crear bloque de criterios
 
-El sistema podra registrar nuevos bloques de criterios con su respectivo valor porcentual 
+El sistema podrá registrar nuevos bloques de criterios con su respectivo valor porcentual.
 
 * Calificar actas
 
-El sistema podra calificar las actas creadas con sus respectivos bloques de criterios.
+El sistema podrá calificar las actas creadas con sus respectivos bloques de criterios.
 
 * Listar actas
 
-El sistema podra Listar las actas existentes en el sistema para poder verificar si los datos creados estan correctos.
+El sistema podrá listar las actas existentes en el sistema para poder verificar si los datos creados están correctos.
 
 * Imprimir actas
 
-El sistema podra imprimir las actas listandolas con el nombre de el id.
+El sistema podrá imprimir las actas listándolas con el ID del autor.
 
 * Listar criterios
 
-El sistema podra listar los bloques de criterios existentes para saber con cual de ellos se evaluara cada proyecto de grado.
+El sistema podrá listar los bloques de criterios existentes para saber con cuál de ellos se evaluará cada proyecto de grado.
 

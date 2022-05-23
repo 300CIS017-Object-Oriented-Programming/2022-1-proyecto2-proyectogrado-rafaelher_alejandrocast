@@ -1,6 +1,5 @@
 def Nuevo_Criterio(st,controller):
     con = 0
-    aux3 = {}
     st.subheader("Nombre del bloque de criterios")
     n_bloque = st.text_input("Nombre del bloque de criterios")
     st.subheader("Criterio y valor porcentual")
@@ -51,7 +50,6 @@ def Nuevo_Criterio(st,controller):
     if vaciar:
         controller.crt_aux.clear()
         st.text("Bloque " + n_bloque + " sido vaciado correctamente")
-
     st.subheader("El bloque "+n_bloque+" quedaría de la siguiente manera")
     aux = controller.crt_aux
     for key in aux:

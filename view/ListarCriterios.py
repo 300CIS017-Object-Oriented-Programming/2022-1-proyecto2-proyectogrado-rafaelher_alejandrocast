@@ -1,11 +1,9 @@
-
 def search(clave, d):
    i = 0
    for key in d:
       if key == clave:
          return i
       i+=1
-
 
 def Listar_Criterios(st,controller):
     l = []

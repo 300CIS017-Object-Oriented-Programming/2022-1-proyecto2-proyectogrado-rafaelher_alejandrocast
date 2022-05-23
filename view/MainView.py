@@ -11,7 +11,6 @@ from ImprimirActa import imp_acta
 from CrearCriterio import Nuevo_Criterio
 from ListarCriterios import Listar_Criterios
 
-
 class MainView:
     def __init__(self) -> None:
         super().__init__()
@@ -44,13 +43,10 @@ class MainView:
                      300, )
             self.menu_actual = option_menu("Menu", ["Inicio", 'Imprimir Acta', 'Crear Acta', 'Listar Actas', 'Calificar Actas','Crear Criterios','Listar Criterios'],
                                         icons=['house', 'bi bi-printer', 'bi bi-file-earmark-plus-fill','archive','bi bi-clipboard-check','bi bi-node-plus','archive'], menu_icon="bi bi-view-list", default_index=0, orientation="horizontal")
-
     def controlar_menu(self):
         st.image('https://www2.javerianacali.edu.co/sites/ujc/files/field/image/puj_logo_azul_copia1_0.png', '', 300, )
-        """TODO poner aqui su codigo de interaccion"""
         if self.menu_actual == "Inicio":
-            texto = consultar_instrucciones()
-            st.write(texto)
+            consultar_instrucciones(st, self.controller)
         elif self.menu_actual == "Imprimir Acta":
             imp_acta(st, self.controller)
         elif self.menu_actual == "Crear Acta":
